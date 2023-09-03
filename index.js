@@ -20,8 +20,21 @@ client.on('ready', () => {
 
 client.on('message', message => {
     console.log('message', message)
-    if (message.from === '79884054121@c.us') {
-        client.sendMessage('79504460593@c.us', 'pong');
+    if (message.from === '79159975804@c.us') {
+        let mess = 'Igor2: ' + message.body
+        client.sendMessage('79611601191@c.us', mess);
+        client.sendMessage('79884054121@c.us', mess);
+    }
+    else if (message.from === '79611601191@c.us') {
+        let mess = 'Igor1: ' + message.body
+        client.sendMessage('79159975804@c.us', mess);
+        client.sendMessage('79884054121@c.us', mess);
+    }
+    else if (message.from === '79884054121@c.us') {
+        let mess = 'Admin: ' + message.body
+        client.sendMessage('79159975804@c.us', mess);
+        client.sendMessage('79611601191@c.us', mess);
+        client.sendMessage('79504460593@c.us', mess);
     }
     q++;
 	// console.log(message.body);
