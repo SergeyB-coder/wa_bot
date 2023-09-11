@@ -73,10 +73,10 @@ client.on('ready', () => {
 client.on('message', message => {
     console.log('message', message)
 
-    checkMedia(message)
+    
 
     let is_message = true
-    if (message.from === '79108257989@c.us') {
+    if (message.from === admin) {
         if (message.body.length > 3) {
             if (message.body.slice(0, 3) === '*7#') {
                 is_message = false
