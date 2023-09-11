@@ -1,17 +1,68 @@
+const fs = require('fs')
 const qrcode = require('qrcode-terminal');
 
-let q = 0
-
 const { Client, LocalAuth } = require('whatsapp-web.js');
+
+const admin = '79108257989@c.us'
+// const admin = '79024050778@c.us'
+const igor = '79611601191@c.us'
+const emir = '79024050778@c.us'
+
+const superadmin = '79024050778@c.us'
+
+
+function getStopWords() {
+    return fs.readFileSync('./test.txt', 'utf8').toString().split('\n')
+}
+
+function checkWordIsStop(message) {
+    let stop_word = ''
+    console.log('checkWordIsStop', message)
+    const stop_words = getStopWords()
+    console.log('checkWordIsStop', stop_words)
+    let no_stop = true
+    stop_words.forEach((word, index) => {
+        if (word !== '')  no_stop = no_stop && !message.toLowerCase().includes(word)
+        console.log('check word ', word, no_stop)
+
+        if (!no_stop && word !== '') stop_word = word
+    });
+    console.log('checkword', message, stop_word)
+    return stop_word
+}
+
+function addNewStopWord(new_word) {
+    fs.appendFile('./test.txt', '\n' + new_word.toLowerCase(), (err) => {
+        if (err) {
+            console.error(err)
+            return
+        }
+        console.log('success add new word: ', new_word)
+    })
+}
+
+async function checkMedia (message) {
+    if(message.hasMedia) {
+        const media = await message.downloadMedia();
+        client.sendMessage('79504460593@c.us', media);
+    }
+
+}
+
 const client = new Client(
     {
         authStrategy: new LocalAuth(),
-        puppeteer: { headless: true ,args: ['--no-sandbox','--disable-setuid-sandbox'] }
+        puppeteer: { 
+            headless: true, 
+            args: ['--no-sandbox', '--disable-setuid-sandbox'],
+            // executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe',
+            // executablePath: '/usr/bin/google-chrome-stable'
+        }
     }
 );
 
 client.on('qr', qr => {
-    qrcode.generate(qr, {small: true});
+    qrcode.generate(qr, { small: true });
 });
 
 client.on('ready', () => {
@@ -20,38 +71,61 @@ client.on('ready', () => {
 
 client.on('message', message => {
     console.log('message', message)
-    if (message.from === '79159975804@c.us') {
-        if (message.body.toLowerCase().includes('phone')) {
-            client.sendMessage('79807047136@c.us', 'ATTENTION!!! stop word Phone from Igor2');
-        }
-        else {
-            let mess = 'Igor2: ' + message.body
-            client.sendMessage('79611601191@c.us', mess);
-            client.sendMessage('79884054121@c.us', mess);
-        }
-        
-    }
-    else if (message.from === '79611601191@c.us') {
-        if (message.body.toLowerCase().includes('phone')) {
-            client.sendMessage('79807047136@c.us', 'ATTENTION!!! stop word Phone from Igor1');
-        }
-        else {
-            let mess = 'Igor1: ' + message.body
-            client.sendMessage('79159975804@c.us', mess);
-            client.sendMessage('79884054121@c.us', mess);
+
+    checkMedia(message)
+
+    let is_message = true
+    if (message.from === '79108257989@c.us') {
+        if (message.body.length > 3) {
+            if (message.body.slice(0, 3) === '*7#') {
+                is_message = false
+                const new_word = message.body.slice(3)
+                addNewStopWord(new_word)
+            }
         }
     }
-    else if (message.from === '79884054121@c.us') {
-        let mess = 'Admin: ' + message.body
-        client.sendMessage('79159975804@c.us', mess);
-        client.sendMessage('79611601191@c.us', mess);
-        client.sendMessage('79504460593@c.us', mess);
+
+    
+    if (is_message) {
+        if (message.from === igor) {
+            checkMedia(message, emir)
+            console.log('message.from', igor)
+
+            let stop_word = checkWordIsStop(message.body)
+            if (stop_word) {
+                client.sendMessage(admin, 'ATTENTION!!! stop word from Igor in message: ' + message.body + '\nCHAT - Deutz Vosda MMA: '+ stop_word);
+                client.sendMessage(superadmin, 'ATTENTION'+igor);
+            }
+            else {
+                let mess = '*Igor:* ' + message.body
+                client.sendMessage(emir, mess);
+
+                client.sendMessage(superadmin, mess);
+            }
+        }
+
+        if (message.from === emir) {
+            checkMedia(message, igor)
+            console.log('message.from', emir)
+
+            let stop_word = checkWordIsStop(message.body)
+            if (stop_word) {
+                client.sendMessage(admin, 'ATTENTION!!! stop word from Igor in message: ' + message.body + '\nCHAT - Deutz Vosda MMA: '+ stop_word);
+                client.sendMessage(superadmin, 'ATTENTION'+emir);
+            }
+            else {
+                let mess = '*Emir:* ' + message.body
+                client.sendMessage(igor, mess);
+
+                client.sendMessage(superadmin, mess);
+            }
+        }
     }
-    q++;
-	// console.log(message.body);
-    // message.reply('Сама ты ' + message.body + q.toString());
+
+
 });
- 
+
+
+
 
 client.initialize();
- 
