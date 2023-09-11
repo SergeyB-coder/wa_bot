@@ -41,10 +41,11 @@ function addNewStopWord(new_word) {
     })
 }
 
-async function checkMedia (message) {
+async function checkMedia (message, to) {
     if(message.hasMedia) {
         const media = await message.downloadMedia();
-        client.sendMessage('79504460593@c.us', media);
+        client.sendMessage(to, media);
+        // client.sendMessage(superadmin, media);
     }
 
 }
@@ -94,13 +95,13 @@ client.on('message', message => {
             let stop_word = checkWordIsStop(message.body)
             if (stop_word) {
                 client.sendMessage(admin, 'ATTENTION!!! stop word from Igor in message: ' + message.body + '\nCHAT - Deutz Vosda MMA: '+ stop_word);
-                client.sendMessage(superadmin, 'ATTENTION'+igor);
+                // client.sendMessage(superadmin, 'ATTENTION'+igor);
             }
             else {
                 let mess = '*Igor:* ' + message.body
                 client.sendMessage(emir, mess);
 
-                client.sendMessage(superadmin, mess);
+                // client.sendMessage(superadmin, mess);
             }
         }
 
@@ -111,13 +112,13 @@ client.on('message', message => {
             let stop_word = checkWordIsStop(message.body)
             if (stop_word) {
                 client.sendMessage(admin, 'ATTENTION!!! stop word from Igor in message: ' + message.body + '\nCHAT - Deutz Vosda MMA: '+ stop_word);
-                client.sendMessage(superadmin, 'ATTENTION'+emir);
+                // client.sendMessage(superadmin, 'ATTENTION'+emir);
             }
             else {
                 let mess = '*Emir:* ' + message.body
                 client.sendMessage(igor, mess);
 
-                client.sendMessage(superadmin, mess);
+                // client.sendMessage(superadmin, mess);
             }
         }
     }
