@@ -113,10 +113,12 @@ client.on('message', message => {
             if (stop_word) {
                 client.sendMessage(admin, 'ATTENTION!!! stop word from Igor in message: ' + message.body + '\nCHAT - Deutz Vosda MMA: '+ stop_word);
                 // client.sendMessage(superadmin, 'ATTENTION'+emir);
+                console.log('stopword')
             }
             else {
                 let mess = '*Emir:* ' + message.body
                 client.sendMessage(igor, mess);
+                console.log('mess to igor')
 
                 // client.sendMessage(superadmin, mess);
             }
