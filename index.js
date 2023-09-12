@@ -6,7 +6,8 @@ const { Client, LocalAuth } = require('whatsapp-web.js');
 const admin = '79108257989@c.us'
 // const admin = '79024050778@c.us'
 const igor = '79611601191@c.us'
-const emir = '79024050778@c.us'
+const emir = '905360679598@c.us'
+const katya = '79301200905@c.us'
 
 const superadmin = '79024050778@c.us'
 
@@ -57,7 +58,7 @@ const client = new Client(
             headless: true, 
             args: ['--no-sandbox', '--disable-setuid-sandbox'],
             // executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe',
-            // executablePath: '/usr/bin/google-chrome-stable'
+            executablePath: '/usr/share/doc/google-chrome-stable'
         }
     }
 );
@@ -90,6 +91,7 @@ client.on('message', message => {
     if (is_message) {
         if (message.from === igor) {
             checkMedia(message, emir)
+            checkMedia(message, katya)
             console.log('message.from', igor)
 
             let stop_word = checkWordIsStop(message.body)
@@ -100,13 +102,15 @@ client.on('message', message => {
             else {
                 let mess = '*Igor:* ' + message.body
                 client.sendMessage(emir, mess);
+                client.sendMessage(katya, mess);
 
                 // client.sendMessage(superadmin, mess);
             }
         }
 
-        if (message.from === emir) {
+        else if (message.from === emir) {
             checkMedia(message, igor)
+            checkMedia(message, katya)
             console.log('message.from', emir)
 
             let stop_word = checkWordIsStop(message.body)
@@ -118,7 +122,31 @@ client.on('message', message => {
             else {
                 let mess = '*Emir:* ' + message.body
                 client.sendMessage(igor, mess);
+                client.sendMessage(katya, mess);
                 console.log('mess to igor')
+                
+
+                // client.sendMessage(superadmin, mess);
+            }
+        }
+
+        else if (message.from === katya) {
+            checkMedia(message, igor)
+            checkMedia(message, emir)
+            console.log('message.from', katya)
+
+            let stop_word = checkWordIsStop(message.body)
+            if (stop_word) {
+                client.sendMessage(admin, 'ATTENTION!!! stop word from Igor in message: ' + message.body + '\nCHAT - Deutz Vosda MMA: '+ stop_word);
+                // client.sendMessage(superadmin, 'ATTENTION'+emir);
+                console.log('stopword')
+            }
+            else {
+                let mess = '*Emir:* ' + message.body
+                client.sendMessage(igor, mess);
+                client.sendMessage(emir, mess);
+                console.log('mess to igor')
+                
 
                 // client.sendMessage(superadmin, mess);
             }
