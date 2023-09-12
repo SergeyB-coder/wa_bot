@@ -142,7 +142,7 @@ client.on('message', message => {
                 console.log('stopword')
             }
             else {
-                let mess = '*Emir:* ' + message.body
+                let mess = '*Katya:* ' + message.body
                 client.sendMessage(igor, mess);
                 client.sendMessage(emir, mess);
                 console.log('mess to igor')
