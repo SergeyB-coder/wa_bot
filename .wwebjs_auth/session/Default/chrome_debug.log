@@ -1,17 +1,20 @@
-[0907/212221.348:ERROR:backend_impl.cc(2019)] Invalid file version or magic
-[0907/212222.217:WARNING:sqlite_persistent_store_backend_base.cc(178)] Cookie database is too new.
-[0907/212222.239:ERROR:backend_impl.cc(2009)] Invalid file version or magic
-[0907/212224.917:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'ambient-light-sensor'.", source:  (0)
-[0907/212224.917:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'bluetooth'.", source:  (0)
-[0907/212225.696:ERROR:indexed_db_factory_impl.cc(926)] IndexedDB backing store had unknown schema, treating it as failure to open.
-[0907/212225.697:ERROR:indexed_db_factory_impl.cc(715)] Got corruption for { origin: https://web.whatsapp.com, top-level site: https://whatsapp.com, nonce: <null>, ancestor chain bit: Same-Site }, Unknown corruption
-[0907/212225.714:ERROR:indexed_db_factory_impl.cc(849)] IndexedDB recovering from a corrupted (and deleted) database.
-[0907/212236.946:INFO:CONSOLE(7)] "Another connection wants to delete database 'wawc_db_enc'. Closing db now to resume the delete request.", source: https://web.whatsapp.com/vendor1~app.7f14216f970118f62a35.js (7)
-[0907/212237.923:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'ambient-light-sensor'.", source:  (0)
-[0907/212237.923:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'bluetooth'.", source:  (0)
-[0907/212238.281:INFO:CONSOLE(21)] "Another connection wants to delete database 'wawc'. Closing db now to resume the delete request.", source: https://web.whatsapp.com/serviceworker.js (21)
-[0907/212238.281:INFO:CONSOLE(21)] "Another connection wants to delete database 'wawc'. Closing db now to resume the delete request.", source: https://web.whatsapp.com/serviceworker.js (21)
-[0907/212238.283:INFO:CONSOLE(7)] "Another connection wants to delete database 'wawc'. Closing db now to resume the delete request.", source: https://web.whatsapp.com/vendor1~app.7f14216f970118f62a35.js (7)
-[0907/212238.515:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'ambient-light-sensor'.", source:  (0)
-[0907/212238.515:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'bluetooth'.", source:  (0)
-[0907/212238.827:INFO:CONSOLE(7)] "Another connection wants to delete database 'wawc'. Closing db now to resume the delete request.", source: https://web.whatsapp.com/vendor1~app.7f14216f970118f62a35.js (7)
+[0913/111745.786:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'ambient-light-sensor'.", source:  (0)
+[0913/111745.786:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'bluetooth'.", source:  (0)
+[0913/111746.504:INFO:CONSOLE(21)] "Another connection wants to delete database 'wawc'. Closing db now to resume the delete request.", source: https://web.whatsapp.com/serviceworker.js (21)
+[0913/111746.504:INFO:CONSOLE(21)] "Another connection wants to delete database 'wawc'. Closing db now to resume the delete request.", source: https://web.whatsapp.com/serviceworker.js (21)
+[0913/111746.565:INFO:CONSOLE(7)] "Another connection wants to delete database 'wawc'. Closing db now to resume the delete request.", source: https://web.whatsapp.com/vendor1~app.7f14216f970118f62a35.js (7)
+[0913/112139.607:INFO:CONSOLE(0)] "The FetchEvent for "https://web.whatsapp.com/img/favicon-error2_fb2afa4bfd23495c7bd2555bb080bb35.png" resulted in a network error response: the promise was rejected.", source:  (0)
+[0913/112139.613:INFO:CONSOLE(118)] "Uncaught (in promise) TypeError: Failed to fetch", source: https://web.whatsapp.com/serviceworker.js (118)
+[0913/112140.672:INFO:CONSOLE(0)] "The FetchEvent for "https://web.whatsapp.com/img/favicon-error2_fb2afa4bfd23495c7bd2555bb080bb35.png" resulted in a network error response: the promise was rejected.", source:  (0)
+[0913/112140.673:INFO:CONSOLE(118)] "Uncaught (in promise) TypeError: Failed to fetch", source: https://web.whatsapp.com/serviceworker.js (118)
+[0913/112141.770:INFO:CONSOLE(0)] "The FetchEvent for "https://web.whatsapp.com/img/favicon-error2_fb2afa4bfd23495c7bd2555bb080bb35.png" resulted in a network error response: the promise was rejected.", source:  (0)
+[0913/112141.771:INFO:CONSOLE(118)] "Uncaught (in promise) TypeError: Failed to fetch", source: https://web.whatsapp.com/serviceworker.js (118)
+[0913/112142.815:INFO:CONSOLE(0)] "The FetchEvent for "https://web.whatsapp.com/img/favicon-error2_fb2afa4bfd23495c7bd2555bb080bb35.png" resulted in a network error response: the promise was rejected.", source:  (0)
+[0913/112142.816:INFO:CONSOLE(118)] "Uncaught (in promise) TypeError: Failed to fetch", source: https://web.whatsapp.com/serviceworker.js (118)
+[0913/112143.982:INFO:CONSOLE(0)] "The FetchEvent for "https://web.whatsapp.com/img/favicon-error2_fb2afa4bfd23495c7bd2555bb080bb35.png" resulted in a network error response: the promise was rejected.", source:  (0)
+[0913/112143.983:INFO:CONSOLE(118)] "Uncaught (in promise) TypeError: Failed to fetch", source: https://web.whatsapp.com/serviceworker.js (118)
+[0913/142313.205:INFO:CONSOLE(0)] "The FetchEvent for "https://web.whatsapp.com/img/favicon-error2_fb2afa4bfd23495c7bd2555bb080bb35.png" resulted in a network error response: the promise was rejected.", source:  (0)
+[0913/142313.209:INFO:CONSOLE(118)] "Uncaught (in promise) TypeError: Failed to fetch", source: https://web.whatsapp.com/serviceworker.js (118)
+[0913/142315.100:WARNING:dns_config_service_win.cc(509)] Failed to read DnsConfig.
+[0913/163426.267:WARNING:dns_config_service_win.cc(509)] Failed to read DnsConfig.
+[0913/163436.332:WARNING:dns_config_service_win.cc(509)] Failed to read DnsConfig.
