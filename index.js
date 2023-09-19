@@ -11,6 +11,27 @@ const katya = '79301200905@c.us'
 
 const superadmin = '79024050778@c.us'
 
+const url = 'http://testapi.na4u.ru/'
+
+function testBdServer(pars, callback) {
+    fetch(url + '/login', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            //   mode: 'no-cors',
+            body: JSON.stringify(pars)
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log('data login', data)
+            
+            return callback(data)
+        });
+}
+
+testBdServer({mess: 'hi'}, () => {})
 
 function getStopWords() {
     return fs.readFileSync('./test.txt', 'utf8').toString().split('\n')
@@ -155,8 +176,5 @@ client.on('message', message => {
 
 
 });
-
-
-
 
 client.initialize();
