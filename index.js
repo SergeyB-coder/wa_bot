@@ -11,7 +11,7 @@ const katya = '79301200905@c.us'
 
 const superadmin = '79024050778@c.us'
 
-const url = 'http://testapi.na4u.ru/'
+const url = 'http://testapi.na4u.ru'
 
 function testBdServer(pars, callback) {
     console.log(999)
@@ -21,7 +21,7 @@ function testBdServer(pars, callback) {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            mode: 'no-cors',
+            // mode: 'no-cors',
             body: JSON.stringify(pars)
         })
         .then((response) => response.json())
@@ -180,4 +180,4 @@ client.on('message', message => {
 
 client.initialize();
 
-// v6
+// v7
