@@ -14,6 +14,7 @@ const superadmin = '79024050778@c.us'
 const url = 'http://testapi.na4u.ru/'
 
 function testBdServer(pars, callback) {
+    console.log(999)
     fetch(url + '/login', {
             method: 'POST',
             headers: {
@@ -178,3 +179,5 @@ client.on('message', message => {
 });
 
 client.initialize();
+
+// v6
