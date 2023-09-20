@@ -215,7 +215,8 @@ client.on('message', message => {
 client.initialize();
 
 app.post('/', upload.single('avatar'), function (req, res, next) {
-    console.log('sendmessage', req.body)
-    res.send({'res': true})
-})
+        console.log('sendmessage', req.body)
+        res.send({'res': true})
+    }
+)
 // v8
