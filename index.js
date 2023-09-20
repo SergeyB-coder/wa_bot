@@ -3,6 +3,41 @@ const qrcode = require('qrcode-terminal');
 
 const { Client, LocalAuth } = require('whatsapp-web.js');
 
+const fs = require('fs');
+const path = require('path');
+
+const { APP_PORT, APP_IP, APP_PATH } = process.env;
+
+const multer  = require('multer');
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, './public/static/uploads');
+    },
+    filename: function (req, file, cb) {
+        //   const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+});
+const upload = multer({ storage: storage });
+const bodyParser = require('body-parser');
+
+
+const express = require('express')
+var cors = require('cors')
+const app = express()
+app.use(cors())
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
+
+// var http = require('http').createServer(app);
+
+app.listen(APP_PORT, APP_IP, () => {
+  console.log(`Example app listening on port ${APP_PORT}`)
+})
+
 const admin = '79108257989@c.us'
 // const admin = '79024050778@c.us'
 const igor = '79611601191@c.us'
@@ -180,4 +215,8 @@ client.on('message', message => {
 
 client.initialize();
 
-// v7
+app.post('/', upload.single('avatar'), function (req, res, next) {
+    console.log('sendmessage', req.body)
+    res.send({'res': true})
+})
+// v8
