@@ -222,14 +222,14 @@ app.post('/', upload.single('avatar'), function (req, res, next) {
 )
 
 app.post('/file', upload.single('message_file'), function (req, res, next) {
-    console.log('bodyfile', req.body)
-    const file = req.file;
+    // console.log('bodyfile', req.body)
+    // const file = req.file;
 
     
     
-    const media = MessageMedia.fromFilePath('./public/static/uploads/message_file-1695284764088.jpg');
-    console.log('media', media)
-    // client.sendMessage(superadmin, media);
+    const media = MessageMedia.fromFilePath('./test.txt');
+    // console.log('media', media.base6)
+    client.sendMessage(superadmin, media);
     res.send({res: 'success!'})
 })
 // v8
