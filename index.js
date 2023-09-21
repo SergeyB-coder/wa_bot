@@ -47,7 +47,7 @@ const katya = '79301200905@c.us'
 
 const superadmin = '79024050778@c.us'
 
-const url = 'http://testapi.na4u.ru'
+const url = 'https://testapi.na4u.ru'
 
 function sendMessageToServer(pars, callback) {
     console.log(999)
