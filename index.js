@@ -230,6 +230,6 @@ app.post('/file', upload.single('message_file'), function (req, res, next) {
     const media = MessageMedia.fromFilePath('./test.txt');
     // console.log('media', media.base6)
     client.sendMessage(superadmin, media);
-    res.send({res: 'success!'})
+    res.send({res: media})
 })
 // v8
