@@ -233,7 +233,7 @@ app.post('/file', upload.single('message_file'), function (req, res, next) {
 
     
     
-    const media = MessageMedia.fromFilePath('./public/static/uploads/message_file-1695284764088.jpg');
+    const media = MessageMedia.fromFilePath('./public/static/uploads/' + file.filename);
     // const media_f = new MessageMedia('text/plain', toBase64('./test.txt'));
     // console.log('media', media.base6)
     client.sendMessage(superadmin, media);
