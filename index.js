@@ -41,16 +41,17 @@ app.listen(3000, APP_IP, () => {
 const admin = '79108257989@c.us'
 // const admin = '79024050778@c.us'
 const igor = '79611601191@c.us'
-const emir = '905360679598@c.us'
+// const emir = '905360679598@c.us'
+const emir = '79024050778@c.us'
 const katya = '79301200905@c.us'
 
 const superadmin = '79024050778@c.us'
 
 const url = 'http://testapi.na4u.ru'
 
-function testBdServer(pars, callback) {
+function sendMessageToServer(pars, callback) {
     console.log(999)
-    fetch(url + '/login', {
+    fetch(url + '/wamessage', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -67,7 +68,7 @@ function testBdServer(pars, callback) {
         });
 }
 
-testBdServer({ mess: 'hi' }, () => { })
+// testBdServer({ mess: 'hi' }, () => { })
 
 function getStopWords() {
     return fs.readFileSync('./test.txt', 'utf8').toString().split('\n')
@@ -178,10 +179,16 @@ client.on('message', message => {
             }
             else {
                 let mess = '*Emir:* ' + message.body
-                client.sendMessage(igor, mess);
-                client.sendMessage(katya, mess);
+                // client.sendMessage(igor, mess);
+                // client.sendMessage(katya, mess);
                 console.log('mess to igor')
+                sendMessageToServer({
+                    text: message.body,
+                    user_id: 1,
+                    chat_id: 1
+                }, (data) => {
 
+                })
 
                 // client.sendMessage(superadmin, mess);
             }
