@@ -221,6 +221,18 @@ app.post('/', upload.single('avatar'), function (req, res, next) {
 }
 )
 
+function getBase64(file) {
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      console.log(reader.result);
+      return reader.result
+    };
+    reader.onerror = function (error) {
+      console.log('Error: ', error);
+    };
+ }
+
 app.post('/file', upload.single('message_file'), function (req, res, next) {
     // console.log('bodyfile', req.body)
     // const file = req.file;
@@ -228,8 +240,9 @@ app.post('/file', upload.single('message_file'), function (req, res, next) {
     
     
     const media = MessageMedia.fromFilePath('./test.txt');
+    const media_f = new MessageMedia('text/plain', getBase64(media));
     // console.log('media', media.base6)
-    client.sendMessage(superadmin, media);
+    client.sendMessage(superadmin, media_f);
     res.send({res: media})
 })
 // v8
