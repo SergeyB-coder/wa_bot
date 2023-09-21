@@ -220,7 +220,7 @@ app.post('/', upload.single('avatar'), function (req, res, next) {
     }
 )
 
-app.post('/file', upload.array('message_file'), function (req, res, next) {
+app.post('/file', upload.single('message_file'), function (req, res, next) {
     console.log('bodyfile', req.body)
     const file = req.file;
     
