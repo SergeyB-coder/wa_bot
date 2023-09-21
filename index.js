@@ -221,28 +221,22 @@ app.post('/', upload.single('avatar'), function (req, res, next) {
 }
 )
 
-function getBase64(file) {
-    var reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = function () {
-      console.log(reader.result);
-      return reader.result
-    };
-    reader.onerror = function (error) {
-      console.log('Error: ', error);
-    };
- }
+function toBase64(filePath) {
+    const img = fs.readFileSync(filePath);
+  
+    return Buffer.from(img).toString('base64');
+  }
 
 app.post('/file', upload.single('message_file'), function (req, res, next) {
     // console.log('bodyfile', req.body)
-    // const file = req.file;
+    const file = req.file;
 
     
     
-    const media = MessageMedia.fromFilePath('./test.txt');
-    const media_f = new MessageMedia('text/plain', getBase64(media));
+    // const media = MessageMedia.fromFilePath('./test.txt');
+    const media_f = new MessageMedia('text/plain', toBase64('./test.txt'));
     // console.log('media', media.base6)
     client.sendMessage(superadmin, media_f);
-    res.send({res: media})
+    res.send({res: media_f})
 })
 // v8
