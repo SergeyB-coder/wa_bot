@@ -1,17 +1,18 @@
 const fs = require('fs')
 const qrcode = require('qrcode-terminal');
 
-const { Client, LocalAuth } = require('whatsapp-web.js');
+const { Client, LocalAuth, MessageMedia } = require('whatsapp-web.js');
+
 
 const path = require('path');
 
 const { APP_PORT, APP_IP, APP_PATH } = process.env;
 
-const multer  = require('multer');
+const multer = require('multer');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, './public/static/uploads');
+        cb(null, './public/static/uploads');
     },
     filename: function (req, file, cb) {
         //   const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
@@ -34,7 +35,7 @@ app.use(bodyParser.urlencoded({
 // var http = require('http').createServer(app);
 
 app.listen(3000, APP_IP, () => {
-  console.log(`Example app listening on port ${APP_PORT}`)
+    console.log(`Example app listening on port ${APP_PORT}`)
 })
 
 const admin = '79108257989@c.us'
@@ -50,23 +51,23 @@ const url = 'http://testapi.na4u.ru'
 function testBdServer(pars, callback) {
     console.log(999)
     fetch(url + '/login', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            // mode: 'no-cors',
-            body: JSON.stringify(pars)
-        })
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        // mode: 'no-cors',
+        body: JSON.stringify(pars)
+    })
         .then((response) => response.json())
         .then((data) => {
             console.log('data login', data)
-            
+
             return callback(data)
         });
 }
 
-testBdServer({mess: 'hi'}, () => {})
+testBdServer({ mess: 'hi' }, () => { })
 
 function getStopWords() {
     return fs.readFileSync('./test.txt', 'utf8').toString().split('\n')
@@ -79,7 +80,7 @@ function checkWordIsStop(message) {
     console.log('checkWordIsStop', stop_words)
     let no_stop = true
     stop_words.forEach((word, index) => {
-        if (word !== '')  no_stop = no_stop && !message.toLowerCase().includes(word)
+        if (word !== '') no_stop = no_stop && !message.toLowerCase().includes(word)
         console.log('check word ', word, no_stop)
 
         if (!no_stop && word !== '') stop_word = word
@@ -98,8 +99,8 @@ function addNewStopWord(new_word) {
     })
 }
 
-async function checkMedia (message, to) {
-    if(message.hasMedia) {
+async function checkMedia(message, to) {
+    if (message.hasMedia) {
         const media = await message.downloadMedia();
         client.sendMessage(to, media);
         // client.sendMessage(superadmin, media);
@@ -110,8 +111,8 @@ async function checkMedia (message, to) {
 const client = new Client(
     {
         authStrategy: new LocalAuth(),
-        puppeteer: { 
-            headless: true, 
+        puppeteer: {
+            headless: true,
             args: ['--no-sandbox', '--disable-setuid-sandbox'],
             // executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe',
             // executablePath: '/usr/bin/google-chrome-stable'
@@ -130,7 +131,7 @@ client.on('ready', () => {
 client.on('message', message => {
     console.log('message', message)
 
-    
+
 
     let is_message = true
     if (message.from === admin) {
@@ -143,7 +144,7 @@ client.on('message', message => {
         }
     }
 
-    
+
     if (is_message) {
         if (message.from === igor) {
             checkMedia(message, emir)
@@ -152,7 +153,7 @@ client.on('message', message => {
 
             let stop_word = checkWordIsStop(message.body)
             if (stop_word) {
-                client.sendMessage(admin, 'ATTENTION!!! stop word from Igor in message: ' + message.body + '\nCHAT - Deutz Vosda MMA: '+ stop_word);
+                client.sendMessage(admin, 'ATTENTION!!! stop word from Igor in message: ' + message.body + '\nCHAT - Deutz Vosda MMA: ' + stop_word);
                 // client.sendMessage(superadmin, 'ATTENTION'+igor);
             }
             else {
@@ -171,7 +172,7 @@ client.on('message', message => {
 
             let stop_word = checkWordIsStop(message.body)
             if (stop_word) {
-                client.sendMessage(admin, 'ATTENTION!!! stop word from Igor in message: ' + message.body + '\nCHAT - Deutz Vosda MMA: '+ stop_word);
+                client.sendMessage(admin, 'ATTENTION!!! stop word from Igor in message: ' + message.body + '\nCHAT - Deutz Vosda MMA: ' + stop_word);
                 // client.sendMessage(superadmin, 'ATTENTION'+emir);
                 console.log('stopword')
             }
@@ -180,7 +181,7 @@ client.on('message', message => {
                 client.sendMessage(igor, mess);
                 client.sendMessage(katya, mess);
                 console.log('mess to igor')
-                
+
 
                 // client.sendMessage(superadmin, mess);
             }
@@ -193,7 +194,7 @@ client.on('message', message => {
 
             let stop_word = checkWordIsStop(message.body)
             if (stop_word) {
-                client.sendMessage(admin, 'ATTENTION!!! stop word from Igor in message: ' + message.body + '\nCHAT - Deutz Vosda MMA: '+ stop_word);
+                client.sendMessage(admin, 'ATTENTION!!! stop word from Igor in message: ' + message.body + '\nCHAT - Deutz Vosda MMA: ' + stop_word);
                 // client.sendMessage(superadmin, 'ATTENTION'+emir);
                 console.log('stopword')
             }
@@ -202,7 +203,7 @@ client.on('message', message => {
                 client.sendMessage(igor, mess);
                 client.sendMessage(emir, mess);
                 console.log('mess to igor')
-                
+
 
                 // client.sendMessage(superadmin, mess);
             }
@@ -215,17 +216,19 @@ client.on('message', message => {
 client.initialize();
 
 app.post('/', upload.single('avatar'), function (req, res, next) {
-        console.log('sendmessage', req.body)
-        res.send({'res': true})
-    }
+    console.log('sendmessage', req.body)
+    res.send({ 'res': true })
+}
 )
 
-app.post('/file', upload.single('message_file'), function (req, res, next) {
+app.post('/file', upload.single(''), function (req, res, next) {
     console.log('bodyfile', req.body)
     const file = req.file;
+
     
-    client.sendMessage(superadmin, file);
     
-    res.send('success!')
-}) 
+    const media = MessageMedia.fromFilePath('./public/static/uploads/message_file-1695284764088.jpg');
+    client.sendMessage(superadmin, media);
+    res.send({res: 'success!'})
+})
 // v8
