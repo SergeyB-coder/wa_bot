@@ -233,10 +233,10 @@ app.post('/file', upload.single('message_file'), function (req, res, next) {
 
     
     
-    // const media = MessageMedia.fromFilePath('./test.txt');
-    const media_f = new MessageMedia('text/plain', toBase64('./test.txt'));
+    const media = MessageMedia.fromFilePath('./test.txt');
+    // const media_f = new MessageMedia('text/plain', toBase64('./test.txt'));
     // console.log('media', media.base6)
-    client.sendMessage(superadmin, media_f);
-    res.send({res: media_f})
+    client.sendMessage(superadmin, media);
+    res.send({res: 'good'})
 })
 // v8
