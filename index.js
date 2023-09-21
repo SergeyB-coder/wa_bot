@@ -219,4 +219,13 @@ app.post('/', upload.single('avatar'), function (req, res, next) {
         res.send({'res': true})
     }
 )
+
+app.post('/file', upload.array('message_file'), function (req, res, next) {
+    console.log('bodyfile', req.body)
+    const file = req.file;
+    
+    client.sendMessage(superadmin, file);
+    
+    res.send('success!')
+}) 
 // v8
