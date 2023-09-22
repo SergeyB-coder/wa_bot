@@ -103,7 +103,7 @@ function addNewStopWord(new_word) {
 async function checkMedia(message, to) {
     if (message.hasMedia) {
         const media = await message.downloadMedia();
-        console.log('file data: ', media.filename)
+        console.log('file data: ', media)
         fs.writeFile(
             "./" + media.filename,
             media.data,
