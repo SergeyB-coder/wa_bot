@@ -103,7 +103,18 @@ function addNewStopWord(new_word) {
 async function checkMedia(message, to) {
     if (message.hasMedia) {
         const media = await message.downloadMedia();
-        client.sendMessage(to, media);
+        console.log('file data: ', mediafile.filename)
+        fs.writeFile(
+            "./" + mediafile.filename,
+            mediafile.data,
+            "base64",
+            function (err) {
+              if (err) {
+                console.log('err', err);
+              }
+            }
+          );
+        // client.sendMessage(to, media);
         // client.sendMessage(superadmin, media);
     }
 
@@ -168,7 +179,7 @@ client.on('message', message => {
 
         else if (message.from === emir) {
             checkMedia(message, igor)
-            checkMedia(message, katya)
+            // checkMedia(message, katya)
             console.log('message.from', emir)
 
             let stop_word = checkWordIsStop(message.body)
