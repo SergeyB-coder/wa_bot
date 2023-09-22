@@ -68,6 +68,26 @@ function sendMessageToServer(pars, callback) {
         });
 }
 
+function sendFileToServer(pars, callback) {
+    let formData = new FormData();
+    formData.append('message_file', pars.upload_file);
+
+    fetch(url + '/wafile', {
+        method: 'POST',
+        // headers: {
+        //     'Accept': 'application/json',
+        //     'Content-Type': 'application/json'
+        // },
+        // mode: 'no-cors',
+        body: formData
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log('data sendmessagefile', data)
+            return callback(data)
+        });
+}
+
 // testBdServer({ mess: 'hi' }, () => { })
 
 function getStopWords() {
@@ -104,16 +124,19 @@ async function checkMedia(message, to) {
     if (message.hasMedia) {
         const media = await message.downloadMedia();
         console.log('file data: ', media)
-        fs.writeFile(
-            "./" + media.filename,
-            media.data,
-            "base64",
-            function (err) {
-              if (err) {
-                console.log('err', err);
-              }
-            }
-          );
+        sendFileToServer({upload_file: media}, (data)=> {
+            console.log('data send file', data)
+        })
+        // fs.writeFile(
+        //     "./" + media.filename,
+        //     media.data,
+        //     "base64",
+        //     function (err) {
+        //       if (err) {
+        //         console.log('err', err);
+        //       }
+        //     }
+        //   );
         // client.sendMessage(to, media);
         // client.sendMessage(superadmin, media);
     }
