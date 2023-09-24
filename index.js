@@ -51,7 +51,7 @@ const superadmin = '79024050778@c.us'
 const url = 'https://testapi.na4u.ru'
 
 function sendMessageToServer(pars, callback) {
-    console.log(999)
+    console.log('sendMessageToServer')
     fetch(url + '/wamessage', {
         method: 'POST',
         headers: {
@@ -70,21 +70,20 @@ function sendMessageToServer(pars, callback) {
 }
 
 function sendFileToServer(pars, callback) {
-    let formData = new FormData();
-    formData.append('message_file', pars.upload_file);
-
-    fetch(url + '/wafile', {
+    console.log('sendFileToServer', pars)
+    fetch(url + '/wamessage', {
         method: 'POST',
-        // headers: {
-        //     'Accept': 'application/json',
-        //     'Content-Type': 'application/json'
-        // },
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
         // mode: 'no-cors',
-        body: formData
+        body: JSON.stringify(pars)
     })
         .then((response) => response.json())
         .then((data) => {
-            console.log('data sendmessagefile', data)
+            console.log('data login', data)
+
             return callback(data)
         });
 }
@@ -124,20 +123,30 @@ function addNewStopWord(new_word) {
 async function checkMedia(message, to) {
     if (message.hasMedia) {
         const media = await message.downloadMedia();
-        console.log('file data: ', media)
-        sendFileToServer({upload_file: media}, (data)=> {
-            console.log('data send file', data)
-        })
-        // fs.writeFile(
-        //     "./" + media.filename,
-        //     media.data,
-        //     "base64",
-        //     function (err) {
-        //       if (err) {
-        //         console.log('err', err);
-        //       }
-        //     }
-        //   );
+        // console.log('file data: ', media)
+        // sendFileToServer({upload_file: media}, (data)=> {
+        //     console.log('data send file', data)
+        // })
+        const filename = media.filename
+        fs.writeFile(
+            "./" + filename,
+            media.data,
+            "base64",
+            function (err) {
+                if (err) {
+                    console.log('err', err);
+                }
+                else {
+                    sendFileToServer({
+                        filename: filename,
+                        user_id: 1,
+                        chat_id: 1
+                    }, (data) => {
+    
+                    })
+                }
+            }
+        );
         // client.sendMessage(to, media);
         // client.sendMessage(superadmin, media);
     }
@@ -265,20 +274,20 @@ app.post('/', upload.single('avatar'), function (req, res, next) {
 
 function toBase64(filePath) {
     const img = fs.readFileSync(filePath);
-  
+
     return Buffer.from(img).toString('base64');
-  }
+}
 
 app.post('/file', upload.single('message_file'), function (req, res, next) {
     // console.log('bodyfile', req.body)
     const file = req.file;
 
-    
-    
+
+
     const media = MessageMedia.fromFilePath('./public/static/uploads/' + file.filename);
     // const media_f = new MessageMedia('text/plain', toBase64('./test.txt'));
     // console.log('media', media.base6)
     client.sendMessage(superadmin, media);
-    res.send({res: 'good', file: file})
+    res.send({ res: 'good', file: file })
 })
 // v8
