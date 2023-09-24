@@ -39,14 +39,20 @@ app.listen(3000, APP_IP, () => {
     console.log(`Example app listening on port ${APP_PORT}`)
 })
 
-const admin = '79108257989@c.us'
-// const admin = '79024050778@c.us'
-const igor = '79611601191@c.us'
+// const igor = '79611601191@c.us'
 // const emir = '905360679598@c.us'
-const emir = '79024050778@c.us'
-const katya = '79301200905@c.us'
+// const emir = '79024050778@c.us'
+// const katya = '79301200905@c.us'
 
 const superadmin = '79024050778@c.us'
+const admin = '79108257989@c.us'
+
+// mma chat
+const mustafa = '905327372393@c.us'
+const yusuf =   '905355472205@c.us'
+
+// Deutz Bismarck chat
+const emir = '905360679598@c.us'
 
 const url = 'https://testapi.na4u.ru'
 
@@ -124,13 +130,11 @@ function addNewStopWord(new_word) {
     })
 }
 
-async function checkMedia(message, to) {
+async function checkMedia(message, user_id, chat_id) {
     if (message.hasMedia) {
         const media = await message.downloadMedia();
         console.log('file data: ', media.mimetype)
-        // sendFileToServer({upload_file: media}, (data)=> {
-        //     console.log('data send file', data)
-        // })
+        
         let filename = ''
         if (media.filename) filename = 'file' + Math.round(Math.random() * 1E9) + media.filename
         else filename = 'file' + Math.round(Math.random() * 1E9) + '.' + extentions[media.mimetype]
@@ -145,16 +149,15 @@ async function checkMedia(message, to) {
                 else {
                     sendFileToServer({
                         text: filename,
-                        user_id: 1,
-                        chat_id: 1
+                        user_id: user_id,
+                        chat_id: chat_id
                     }, (data) => {
     
                     })
                 }
             }
         );
-        // client.sendMessage(to, media);
-        // client.sendMessage(superadmin, media);
+
     }
 
 }
@@ -182,8 +185,6 @@ client.on('ready', () => {
 client.on('message', message => {
     console.log('message', message)
 
-
-
     let is_message = true
     if (message.from === admin) {
         if (message.body.length > 3) {
@@ -197,10 +198,8 @@ client.on('message', message => {
 
 
     if (is_message) {
-        if (message.from === igor) {
-            checkMedia(message, emir)
-            checkMedia(message, katya)
-            console.log('message.from', igor)
+        if (message.from === yusuf) {
+            checkMedia(message, 3, 1)
 
             let stop_word = checkWordIsStop(message.body)
             if (stop_word) {
@@ -208,17 +207,39 @@ client.on('message', message => {
                 // client.sendMessage(superadmin, 'ATTENTION'+igor);
             }
             else {
-                let mess = '*Igor:* ' + message.body
-                client.sendMessage(emir, mess);
-                client.sendMessage(katya, mess);
 
-                // client.sendMessage(superadmin, mess);
+                sendMessageToServer({
+                    text: message.body,
+                    user_id: 3,
+                    chat_id: 1
+                }, (data) => {
+
+                })
+            }
+        }
+
+        else if (message.from === mustafa) {
+            checkMedia(message, 4, 1)
+
+            let stop_word = checkWordIsStop(message.body)
+            if (stop_word) {
+                client.sendMessage(admin, 'ATTENTION!!! stop word from Igor in message: ' + message.body + '\nCHAT - Deutz Vosda MMA: ' + stop_word);
+                
+            }
+            else {
+
+                sendMessageToServer({
+                    text: message.body,
+                    user_id: 4,
+                    chat_id: 1
+                }, (data) => {
+
+                })
             }
         }
 
         else if (message.from === emir) {
-            checkMedia(message, igor)
-            // checkMedia(message, katya)
+            checkMedia(message, 1, 2)
             console.log('message.from', emir)
 
             let stop_word = checkWordIsStop(message.body)
@@ -228,41 +249,14 @@ client.on('message', message => {
                 console.log('stopword')
             }
             else {
-                let mess = '*Emir:* ' + message.body
-                // client.sendMessage(igor, mess);
-                // client.sendMessage(katya, mess);
-                console.log('mess to igor')
+                
                 sendMessageToServer({
                     text: message.body,
                     user_id: 1,
-                    chat_id: 1
+                    chat_id: 2
                 }, (data) => {
 
                 })
-
-                // client.sendMessage(superadmin, mess);
-            }
-        }
-
-        else if (message.from === katya) {
-            checkMedia(message, igor)
-            checkMedia(message, emir)
-            console.log('message.from', katya)
-
-            let stop_word = checkWordIsStop(message.body)
-            if (stop_word) {
-                client.sendMessage(admin, 'ATTENTION!!! stop word from Igor in message: ' + message.body + '\nCHAT - Deutz Vosda MMA: ' + stop_word);
-                // client.sendMessage(superadmin, 'ATTENTION'+emir);
-                console.log('stopword')
-            }
-            else {
-                let mess = '*Katya:* ' + message.body
-                client.sendMessage(igor, mess);
-                client.sendMessage(emir, mess);
-                console.log('mess to igor')
-
-
-                // client.sendMessage(superadmin, mess);
             }
         }
     }
@@ -274,27 +268,38 @@ client.initialize();
 
 app.post('/', upload.single('avatar'), function (req, res, next) {
     console.log('sendmessage', req.body)
-    client.sendMessage(emir, req.body.text);
+    const chat_id = parseInt(req.body.chat_id)
+    const text = req.body.text
+
+    if (chat_id === 1) {
+        client.sendMessage(yusuf, text);
+        client.sendMessage(mustafa, text);
+    }
+    else if (chat_id === 2) {
+        client.sendMessage(emir, text);
+    }
     res.send({ 'res': true })
 }
 )
 
-function toBase64(filePath) {
-    const img = fs.readFileSync(filePath);
 
-    return Buffer.from(img).toString('base64');
-}
 
 app.post('/file', upload.single('message_file'), function (req, res, next) {
-    // console.log('bodyfile', req.body)
+    console.log('file: ', req.body)
     const file = req.file;
-
+    const chat_id = req.body.chat_id
 
 
     const media = MessageMedia.fromFilePath('./public/static/uploads/' + file.filename);
-    // const media_f = new MessageMedia('text/plain', toBase64('./test.txt'));
-    // console.log('media', media.base6)
-    client.sendMessage(superadmin, media);
-    res.send({ res: 'good', file: file })
+
+    if (chat_id === 1) {
+        client.sendMessage(yusuf, media);
+        client.sendMessage(mustafa, media);
+    }
+    else if (chat_id === 2) {
+        client.sendMessage(emir, media);
+    }
+    // client.sendMessage(superadmin, media);
+    res.send({ res: 'good' })
 })
 // v8
