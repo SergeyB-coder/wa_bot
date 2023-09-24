@@ -144,7 +144,7 @@ async function checkMedia(message, to) {
                 }
                 else {
                     sendFileToServer({
-                        filename: filename,
+                        text: filename,
                         user_id: 1,
                         chat_id: 1
                     }, (data) => {
