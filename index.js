@@ -123,13 +123,13 @@ function addNewStopWord(new_word) {
 async function checkMedia(message, to) {
     if (message.hasMedia) {
         const media = await message.downloadMedia();
-        // console.log('file data: ', media)
+        console.log('file data: ', media)
         // sendFileToServer({upload_file: media}, (data)=> {
         //     console.log('data send file', data)
         // })
         const filename = media.filename
         fs.writeFile(
-            "./" + filename,
+            "./public/static/uploads/" + filename,
             media.data,
             "base64",
             function (err) {
@@ -138,7 +138,7 @@ async function checkMedia(message, to) {
                 }
                 else {
                     sendFileToServer({
-                        filename: filename,
+                        filename: media,
                         user_id: 1,
                         chat_id: 1
                     }, (data) => {
