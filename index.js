@@ -133,7 +133,7 @@ async function checkMedia(message, to) {
         // })
         let filename = ''
         if (media.filename) filename = 'file' + Math.round(Math.random() * 1E9) + media.filename
-        else filename = 'file' + Math.round(Math.random() * 1E9) + '.' + extentions[file.mimetype]
+        else filename = 'file' + Math.round(Math.random() * 1E9) + '.' + extentions[media.mimetype]
         fs.writeFile(
             "./public/static/uploads/" + filename,
             media.data,
