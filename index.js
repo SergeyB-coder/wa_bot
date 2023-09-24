@@ -50,6 +50,10 @@ const superadmin = '79024050778@c.us'
 
 const url = 'https://testapi.na4u.ru'
 
+const extentions = {
+    'image/jpeg': 'jpg'
+}
+
 function sendMessageToServer(pars, callback) {
     console.log('sendMessageToServer')
     fetch(url + '/wamessage', {
@@ -123,11 +127,13 @@ function addNewStopWord(new_word) {
 async function checkMedia(message, to) {
     if (message.hasMedia) {
         const media = await message.downloadMedia();
-        console.log('file data: ', media)
+        console.log('file data: ', media.mimetype)
         // sendFileToServer({upload_file: media}, (data)=> {
         //     console.log('data send file', data)
         // })
-        const filename = media.filename
+        let filename = ''
+        if (media.filename) filename = 'file' + Math.round(Math.random() * 1E9) + media.filename
+        else filename = 'file' + Math.round(Math.random() * 1E9) + '.' + extentions[file.mimetype]
         fs.writeFile(
             "./public/static/uploads/" + filename,
             media.data,
@@ -138,7 +144,7 @@ async function checkMedia(message, to) {
                 }
                 else {
                     sendFileToServer({
-                        filename: media,
+                        filename: filename,
                         user_id: 1,
                         chat_id: 1
                     }, (data) => {
