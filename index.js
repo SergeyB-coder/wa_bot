@@ -274,6 +274,7 @@ client.initialize();
 
 app.post('/', upload.single('avatar'), function (req, res, next) {
     console.log('sendmessage', req.body)
+    client.sendMessage(emir, req.body.text);
     res.send({ 'res': true })
 }
 )
