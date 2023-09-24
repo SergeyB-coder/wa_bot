@@ -75,7 +75,7 @@ function sendMessageToServer(pars, callback) {
 
 function sendFileToServer(pars, callback) {
     console.log('sendFileToServer', pars)
-    fetch(url + '/wamessage', {
+    fetch(url + '/wafile', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
