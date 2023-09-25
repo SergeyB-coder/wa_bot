@@ -314,6 +314,8 @@ app.post('/', upload.single('avatar'), function (req, res, next) {
     const text = req.body.text
 
     if (chat_id === 1) {
+        console.log('sendmessage to chat mma', chat_id)
+
         client.sendMessage(yusuf, text);
         client.sendMessage(mustafa, text);
 
@@ -321,10 +323,12 @@ app.post('/', upload.single('avatar'), function (req, res, next) {
         client.sendMessage(superadmin2, '*Mma (Katya):* ' + text);
     }
     else if (chat_id === 2) {
+        console.log('sendmessage to chat bismark', chat_id)
         client.sendMessage(emir, text);
         client.sendMessage(superadmin, '*Deutz Bismarck (Katya):* ' + text);
         client.sendMessage(superadmin2, '*Deutz Bismarck (Katya):* ' + text);
     }
+    else console.log('no chats')
     res.send({ 'res': true })
 }
 )
