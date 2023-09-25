@@ -275,6 +275,7 @@ client.on('message', message => {
                 })
 
                 client.sendMessage(superadmin, '*Deutz Bismarck (Emir):* ' + text);
+                client.sendMessage(superadmin2, '*Deutz Bismarck (Emir):* ' + text);
             }
         }
 
