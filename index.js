@@ -45,7 +45,7 @@ app.listen(3000, APP_IP, () => {
 // const katya = '79301200905@c.us'
 
 const superadmin = '79611601191@c.us'
-const superadmin2 = '79611601191@c.us'
+const superadmin2 = '79024050778@c.us'
 const admin = '79108257989@c.us'
 
 // mma chat
@@ -329,7 +329,7 @@ app.post('/', upload.single('avatar'), function (req, res, next) {
         client.sendMessage(superadmin2, '*Deutz Bismarck (Katya):* ' + text);
     }
     else console.log('no chats')
-    res.send({ 'res': true })
+    // res.send({ 'res': true })
 }
 )
 
@@ -357,6 +357,6 @@ app.post('/file', upload.single('message_file'), function (req, res, next) {
         client.sendMessage(superadmin, media);
     }
     // client.sendMessage(superadmin, media);
-    res.send({ res: 'good' })
+    // res.send({ res: 'good' })
 })
 // v9
