@@ -44,7 +44,7 @@ app.listen(3000, APP_IP, () => {
 // const emir = '79024050778@c.us'
 // const katya = '79301200905@c.us'
 
-const superadmin = '79024050778@c.us'
+const superadmin = '79611601191@c.us'
 const admin = '79108257989@c.us'
 
 // mma chat
@@ -130,11 +130,22 @@ function addNewStopWord(new_word) {
     })
 }
 
+const users = {
+    1: 'Emir',
+    3: 'Yusuf',
+    4: 'Mustafa'
+}
+
+const chats = ['Mma', 'Deutz Bismarck']
+
 async function checkMedia(message, user_id, chat_id) {
     if (message.hasMedia) {
         const media = await message.downloadMedia();
         console.log('file data: ', media.mimetype)
         
+        client.sendMessage(superadmin, '*' + chats[chat_id] + users[user_id] + ':* ');
+        client.sendMessage(superadmin, media);
+
         let filename = ''
         if (media.filename) filename = 'file' + Math.round(Math.random() * 1E9) + media.filename
         else filename = 'file' + Math.round(Math.random() * 1E9) + '.' + extentions[media.mimetype]
@@ -215,6 +226,8 @@ client.on('message', message => {
                 }, (data) => {
 
                 })
+
+                client.sendMessage(superadmin, '*Mma (Yusuf):* ' + text);
             }
         }
 
@@ -235,6 +248,8 @@ client.on('message', message => {
                 }, (data) => {
 
                 })
+
+                client.sendMessage(superadmin, '*Mma (Mustafa):* ' + text);
             }
         }
 
@@ -257,6 +272,8 @@ client.on('message', message => {
                 }, (data) => {
 
                 })
+
+                client.sendMessage(superadmin, '*Deutz Bismarck (Emir):* ' + text);
             }
         }
     }
@@ -274,9 +291,12 @@ app.post('/', upload.single('avatar'), function (req, res, next) {
     if (chat_id === 1) {
         client.sendMessage(yusuf, text);
         client.sendMessage(mustafa, text);
+
+        client.sendMessage(superadmin, '*Mma (Katya):* ' + text);
     }
     else if (chat_id === 2) {
         client.sendMessage(emir, text);
+        client.sendMessage(superadmin, '*Deutz Bismarck (Katya):* ' + text);
     }
     res.send({ 'res': true })
 }
@@ -295,9 +315,15 @@ app.post('/file', upload.single('message_file'), function (req, res, next) {
     if (chat_id === 1) {
         client.sendMessage(yusuf, media);
         client.sendMessage(mustafa, media);
+
+        client.sendMessage(superadmin, '*Mma (Katya):* ');
+        client.sendMessage(superadmin, media);
     }
     else if (chat_id === 2) {
         client.sendMessage(emir, media);
+
+        client.sendMessage(superadmin, '*Deutz Bismarck (Katya):* ');
+        client.sendMessage(superadmin, media);
     }
     // client.sendMessage(superadmin, media);
     res.send({ res: 'good' })
