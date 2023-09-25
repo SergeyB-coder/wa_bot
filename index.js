@@ -45,6 +45,7 @@ app.listen(3000, APP_IP, () => {
 // const katya = '79301200905@c.us'
 
 const superadmin = '79611601191@c.us'
+const superadmin2 = '79611601191@c.us'
 const admin = '79108257989@c.us'
 
 // mma chat
@@ -276,6 +277,30 @@ client.on('message', message => {
                 client.sendMessage(superadmin, '*Deutz Bismarck (Emir):* ' + text);
             }
         }
+
+        else if (message.from === superadmin2) {
+            checkMedia(message, 1, 2)
+            console.log('message.from ', superadmin2)
+
+            let stop_word = checkWordIsStop(message.body)
+            if (stop_word) {
+                client.sendMessage(admin, 'ATTENTION!!! stop word from Igor in message: ' + message.body + '\nCHAT - Deutz Vosda MMA: ' + stop_word);
+                // client.sendMessage(superadmin, 'ATTENTION'+emir);
+                console.log('stopword')
+            }
+            else {
+                
+                sendMessageToServer({
+                    text: message.body,
+                    user_id: 1,
+                    chat_id: 2
+                }, (data) => {
+
+                })
+
+                client.sendMessage(superadmin, '*Deutz Bismarck (Sergey):* ' + text);
+            }
+        }
     }
 
 
@@ -293,10 +318,12 @@ app.post('/', upload.single('avatar'), function (req, res, next) {
         client.sendMessage(mustafa, text);
 
         client.sendMessage(superadmin, '*Mma (Katya):* ' + text);
+        client.sendMessage(superadmin2, '*Mma (Katya):* ' + text);
     }
     else if (chat_id === 2) {
         client.sendMessage(emir, text);
         client.sendMessage(superadmin, '*Deutz Bismarck (Katya):* ' + text);
+        client.sendMessage(superadmin2, '*Deutz Bismarck (Katya):* ' + text);
     }
     res.send({ 'res': true })
 }
@@ -328,4 +355,4 @@ app.post('/file', upload.single('message_file'), function (req, res, next) {
     // client.sendMessage(superadmin, media);
     res.send({ res: 'good' })
 })
-// v8
+// v9
