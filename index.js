@@ -210,6 +210,7 @@ client.on('message', message => {
 
 
     if (is_message) {
+        const text = message.body
         if (message.from === yusuf) {
             checkMedia(message, 3, 1)
 
@@ -273,6 +274,8 @@ client.on('message', message => {
                 }, (data) => {
 
                 })
+
+                console.log('sendMessage to admin ', emir)
 
                 client.sendMessage(superadmin, '*Deutz Bismarck (Emir):* ' + text);
                 client.sendMessage(superadmin2, '*Deutz Bismarck (Emir):* ' + text);
