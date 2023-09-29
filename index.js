@@ -50,7 +50,7 @@ const admin = '79108257989@c.us'
 
 // mma chat
 const mustafa = '905327372393@c.us'
-const yusuf =   '905355472205@c.us'
+const yusuf = '905355472205@c.us'
 
 // Deutz Bismarck chat
 const emir = '905360679598@c.us'
@@ -141,35 +141,38 @@ const chats = ['Mma', 'Deutz Bismarck']
 
 async function checkMedia(message, user_id, chat_id) {
     if (message.hasMedia) {
-        const media = await message.downloadMedia();
-        console.log('file data: ', media.mimetype)
-        
-        client.sendMessage(superadmin, '*' + chats[chat_id] + users[user_id] + ':* ');
-        client.sendMessage(superadmin, media);
 
-        let filename = ''
-        if (media.filename) filename = 'file' + Math.round(Math.random() * 1E9) + media.filename
-        else filename = 'file' + Math.round(Math.random() * 1E9) + '.' + extentions[media.mimetype]
-        fs.writeFile(
-            "./public/static/uploads/" + filename,
-            media.data,
-            "base64",
-            function (err) {
-                if (err) {
-                    console.log('err', err);
-                }
-                else {
-                    sendFileToServer({
-                        text: filename,
-                        user_id: user_id,
-                        chat_id: chat_id
-                    }, (data) => {
-    
-                    })
-                }
-            }
-        );
+        try {
+            const media = await message.downloadMedia();
+            console.log('file data: ', media.mimetype)
 
+            client.sendMessage(superadmin, '*' + chats[chat_id] + users[user_id] + ':* ');
+            client.sendMessage(superadmin, media);
+
+            let filename = ''
+            if (media.filename) filename = 'file' + Math.round(Math.random() * 1E9) + media.filename
+            else filename = 'file' + Math.round(Math.random() * 1E9) + '.' + extentions[media.mimetype]
+            fs.writeFile(
+                "./public/static/uploads/" + filename,
+                media.data,
+                "base64",
+                function (err) {
+                    if (err) {
+                        console.log('err', err);
+                    }
+                    else {
+                        sendFileToServer({
+                            text: filename,
+                            user_id: user_id,
+                            chat_id: chat_id
+                        }, (data) => {
+
+                        })
+                    }
+                }
+            );
+        }
+        catch { }
     }
 
 }
@@ -181,7 +184,7 @@ const client = new Client(
             headless: true,
             args: ['--no-sandbox', '--disable-setuid-sandbox'],
             // executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe',
-            executablePath: '/usr/bin/google-chrome-stable'
+            // executablePath: '/usr/bin/google-chrome-stable'
         }
     }
 );
@@ -239,7 +242,7 @@ client.on('message', message => {
             let stop_word = checkWordIsStop(message.body)
             if (stop_word) {
                 client.sendMessage(admin, 'ATTENTION!!! stop word from Igor in message: ' + message.body + '\nCHAT - Deutz Vosda MMA: ' + stop_word);
-                
+
             }
             else {
 
@@ -266,7 +269,7 @@ client.on('message', message => {
                 console.log('stopword')
             }
             else {
-                
+
                 sendMessageToServer({
                     text: message.body,
                     user_id: 1,
@@ -293,7 +296,7 @@ client.on('message', message => {
                 console.log('stopword')
             }
             else {
-                
+
                 sendMessageToServer({
                     text: message.body,
                     user_id: 1,
