@@ -55,6 +55,24 @@ const yusuf = '905355472205@c.us'
 // Deutz Bismarck chat
 const emir = '905360679598@c.us'
 
+//  Zetech Jhon Deer 3
+const ali = '905327431514@c.us'
+
+//  BERQ Perkins Liebherr
+const berq = '905077049490@c.us'
+
+//  CAT Original / OEM
+const israfil = '905354983977@c.us'
+
+//  Liebherr Original / TM
+const mehmet = '905442846832@c.us'
+
+//  Jhon Deer Original China
+const daisy = '8617365374867@c.us'
+
+//  Bosch Denso Iveco Scania Daf Reno
+const ozlem = '905301697987@c.us'
+
 const url = 'https://testapi.na4u.ru'
 
 const extentions = {
@@ -366,4 +384,4 @@ app.post('/file', upload.single('message_file'), function (req, res, next) {
     // client.sendMessage(superadmin, media);
     // res.send({ res: 'good' })
 })
-// v9
+// v10
