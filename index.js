@@ -152,10 +152,16 @@ function addNewStopWord(new_word) {
 const users = {
     1: 'Emir',
     3: 'Yusuf',
-    4: 'Mustafa'
+    4: 'Mustafa',
+    5: 'Ali',
+    6: 'BERQ',
+    7: 'Israfil',
+    8: 'Mehmet',
+    9: 'Daisy',
+    10: 'Ozlem'
 }
 
-const chats = ['Mma', 'Deutz Bismarck']
+const chats = ['Mma', 'Deutz Bismarck', 'Zetech Jhon Deer', 'BERQ Perkins Liebherr', 'CAT Original / OEM', 'Liebherr Original / TM', 'Jhon Deer Original China', 'Bosch Denso Iveco Scania Daf Reno']
 
 async function checkMedia(message, user_id, chat_id) {
     if (message.hasMedia) {
@@ -202,7 +208,7 @@ const client = new Client(
             headless: true,
             args: ['--no-sandbox', '--disable-setuid-sandbox'],
             // executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe',
-            // executablePath: '/usr/bin/google-chrome-stable'
+            executablePath: '/usr/bin/google-chrome-stable'
         }
     }
 );
@@ -303,6 +309,168 @@ client.on('message', message => {
             }
         }
 
+        else if (message.from === ali) {
+            checkMedia(message, 5, 3)
+            console.log('message.from', ali)
+
+            let stop_word = checkWordIsStop(message.body)
+            if (stop_word) {
+                client.sendMessage(admin, 'ATTENTION!!! stop word from Ali in message: ' + message.body + '\nCHAT - Zetech Jhon Deer: ' + stop_word);
+                // client.sendMessage(superadmin, 'ATTENTION'+emir);
+                console.log('stopword')
+            }
+            else {
+
+                sendMessageToServer({
+                    text: message.body,
+                    user_id: 5,
+                    chat_id: 3
+                }, (data) => {
+
+                })
+
+                console.log('sendMessage to admin ', ali)
+
+                client.sendMessage(superadmin, '*Zetech Jhon Deer (Ali):* ' + text);
+                client.sendMessage(superadmin2, '*Zetech Jhon Deer (Ali):* ' + text);
+            }
+        }
+
+        else if (message.from === berq) {
+            checkMedia(message, 6, 4)
+            console.log('message.from', berq)
+
+            let stop_word = checkWordIsStop(message.body)
+            if (stop_word) {
+                client.sendMessage(admin, 'ATTENTION!!! stop word from Berq in message: ' + message.body + '\nCHAT -  BERQ Perkins Liebherr: ' + stop_word);
+                // client.sendMessage(superadmin, 'ATTENTION'+emir);
+                console.log('stopword')
+            }
+            else {
+
+                sendMessageToServer({
+                    text: message.body,
+                    user_id: 6,
+                    chat_id: 4
+                }, (data) => {
+
+                })
+
+                console.log('sendMessage to admin ', berq)
+
+                client.sendMessage(superadmin, '*BERQ Perkins Liebherr:* ' + text);
+                client.sendMessage(superadmin2, '*BERQ Perkins Liebherr:* ' + text);
+            }
+        }
+
+        else if (message.from === israfil) {
+            checkMedia(message, 7, 5)
+            console.log('message.from', israfil)
+
+            let stop_word = checkWordIsStop(message.body)
+            if (stop_word) {
+                client.sendMessage(admin, 'ATTENTION!!! stop word from Israfil in message: ' + message.body + '\nCHAT -  CAT Original / OEM: ' + stop_word);
+                // client.sendMessage(superadmin, 'ATTENTION'+emir);
+                console.log('stopword')
+            }
+            else {
+
+                sendMessageToServer({
+                    text: message.body,
+                    user_id: 7,
+                    chat_id: 5
+                }, (data) => {
+
+                })
+
+                console.log('sendMessage to admin ', israfil)
+
+                client.sendMessage(superadmin, '*CAT Original / OEM (israfil):* ' + text);
+                client.sendMessage(superadmin2, '*CAT Original / OEM (israfil):* ' + text);
+            }
+        }
+
+        else if (message.from === mehmet) {
+            checkMedia(message, 8, 6)
+            console.log('message.from', mehmet)
+
+            let stop_word = checkWordIsStop(message.body)
+            if (stop_word) {
+                client.sendMessage(admin, 'ATTENTION!!! stop word from mehmet in message: ' + message.body + '\nCHAT -  Liebherr Original / TM: ' + stop_word);
+                // client.sendMessage(superadmin, 'ATTENTION'+emir);
+                console.log('stopword')
+            }
+            else {
+
+                sendMessageToServer({
+                    text: message.body,
+                    user_id: 8,
+                    chat_id: 6
+                }, (data) => {
+
+                })
+
+                console.log('sendMessage to admin ', mehmet)
+
+                client.sendMessage(superadmin, '*Liebherr Original / TM (mehmet):* ' + text);
+                client.sendMessage(superadmin2, '*Liebherr Original / TM (mehmet):* ' + text);
+            }
+        }
+
+        else if (message.from === daisy) {
+            checkMedia(message, 9, 7)
+            console.log('message.from', daisy)
+
+            let stop_word = checkWordIsStop(message.body)
+            if (stop_word) {
+                client.sendMessage(admin, 'ATTENTION!!! stop word from daisy in message: ' + message.body + '\nCHAT -  Jhon Deer Original China: ' + stop_word);
+                // client.sendMessage(superadmin, 'ATTENTION'+emir);
+                console.log('stopword')
+            }
+            else {
+
+                sendMessageToServer({
+                    text: message.body,
+                    user_id: 9,
+                    chat_id: 7
+                }, (data) => {
+
+                })
+
+                console.log('sendMessage to admin ', daisy)
+
+                client.sendMessage(superadmin, '*Jhon Deer Original China (daisy):* ' + text);
+                client.sendMessage(superadmin2, '*Jhon Deer Original China (daisy):* ' + text);
+            }
+        }
+
+        else if (message.from === ozlem) {
+            checkMedia(message, 10, 8)
+            console.log('message.from', ozlem)
+
+            let stop_word = checkWordIsStop(message.body)
+            if (stop_word) {
+                client.sendMessage(admin, 'ATTENTION!!! stop word from ozlem in message: ' + message.body + '\nCHAT -  Bosch Denso Iveco Scania Daf Reno: ' + stop_word);
+                // client.sendMessage(superadmin, 'ATTENTION'+emir);
+                console.log('stopword')
+            }
+            else {
+
+                sendMessageToServer({
+                    text: message.body,
+                    user_id: 10,
+                    chat_id: 8
+                }, (data) => {
+
+                })
+
+                console.log('sendMessage to admin ', ozlem)
+
+                client.sendMessage(superadmin, '*Bosch Denso Iveco Scania Daf Reno (Ozlem):* ' + text);
+                client.sendMessage(superadmin2, '*Bosch Denso Iveco Scania Daf Reno (Ozlem):* ' + text);
+            }
+        }
+
         else if (message.from === superadmin2) {
             checkMedia(message, 1, 2)
             console.log('message.from ', superadmin2)
@@ -326,6 +494,7 @@ client.on('message', message => {
                 client.sendMessage(superadmin, '*Deutz Bismarck (Sergey):* ' + text);
             }
         }
+
     }
 
 
@@ -353,6 +522,42 @@ app.post('/', upload.single('avatar'), function (req, res, next) {
         client.sendMessage(superadmin, '*Deutz Bismarck (Katya):* ' + text);
         client.sendMessage(superadmin2, '*Deutz Bismarck (Katya):* ' + text);
     }
+    else if (chat_id === 3) {
+        console.log('sendmessage to chat', chat_id)
+        client.sendMessage(ali, text);
+        client.sendMessage(superadmin, '*Zetech Jhon Deer (Katya):* ' + text);
+        client.sendMessage(superadmin2, '*Zetech Jhon Deer (Katya):* ' + text);
+    }
+    else if (chat_id === 4) {
+        console.log('sendmessage to chat', chat_id)
+        client.sendMessage(berq, text);
+        client.sendMessage(superadmin, '*BERQ Perkins Liebherr (Katya):* ' + text);
+        client.sendMessage(superadmin2, '*BERQ Perkins Liebherr (Katya):* ' + text);
+    }
+    else if (chat_id === 5) {
+        console.log('sendmessage to chat', chat_id)
+        client.sendMessage(israfil, text);
+        client.sendMessage(superadmin, '*CAT Original / OEM (Katya):* ' + text);
+        client.sendMessage(superadmin2, '*CAT Original / OEM (Katya):* ' + text);
+    }
+    else if (chat_id === 6) {
+        console.log('sendmessage to chat', chat_id)
+        client.sendMessage(mehmet, text);
+        client.sendMessage(superadmin, '*Liebherr Original / TM (Katya):* ' + text);
+        client.sendMessage(superadmin2, '*Liebherr Original / TM (Katya):* ' + text);
+    }
+    else if (chat_id === 7) {
+        console.log('sendmessage to chat', chat_id)
+        client.sendMessage(daisy, text);
+        client.sendMessage(superadmin, '*Jhon Deer Original China (Katya):* ' + text);
+        client.sendMessage(superadmin2, '*Jhon Deer Original China (Katya):* ' + text);
+    }
+    else if (chat_id === 8) {
+        console.log('sendmessage to chat', chat_id)
+        client.sendMessage(ozlem, text);
+        client.sendMessage(superadmin, '*Bosch Denso Iveco Scania Daf Reno (Katya):* ' + text);
+        client.sendMessage(superadmin2, '*Bosch Denso Iveco Scania Daf Reno (Katya):* ' + text);
+    }
     else console.log('no chats')
     // res.send({ 'res': true })
 }
@@ -379,6 +584,42 @@ app.post('/file', upload.single('message_file'), function (req, res, next) {
         client.sendMessage(emir, media);
 
         client.sendMessage(superadmin, '*Deutz Bismarck (Katya):* ');
+        client.sendMessage(superadmin, media);
+    }
+    else if (chat_id === 3) {
+        client.sendMessage(ali, media);
+
+        client.sendMessage(superadmin, '*Zetech Jhon Deer (Katya):* ');
+        client.sendMessage(superadmin, media);
+    }
+    else if (chat_id === 4) {
+        client.sendMessage(berq, media);
+
+        client.sendMessage(superadmin, '*BERQ Perkins Liebherr (Katya):* ');
+        client.sendMessage(superadmin, media);
+    }
+    else if (chat_id === 5) {
+        client.sendMessage(israfil, media);
+
+        client.sendMessage(superadmin, '*CAT Original / OEM (Katya):* ');
+        client.sendMessage(superadmin, media);
+    }
+    else if (chat_id === 6) {
+        client.sendMessage(mehmet, media);
+
+        client.sendMessage(superadmin, '*Liebherr Original / TM (Katya):* ');
+        client.sendMessage(superadmin, media);
+    }
+    else if (chat_id === 7) {
+        client.sendMessage(daisy, media);
+
+        client.sendMessage(superadmin, '*Jhon Deer Original China (Katya):* ');
+        client.sendMessage(superadmin, media);
+    }
+    else if (chat_id === 8) {
+        client.sendMessage(ozlem, media);
+
+        client.sendMessage(superadmin, '*Bosch Denso Iveco Scania Daf Reno (Katya):* ');
         client.sendMessage(superadmin, media);
     }
     // client.sendMessage(superadmin, media);
