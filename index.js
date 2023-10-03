@@ -170,8 +170,8 @@ async function checkMedia(message, user_id, chat_id) {
             const media = await message.downloadMedia();
             console.log('file data: ', media.mimetype)
 
-            client.sendMessage(superadmin, '*' + chats[chat_id] + users[user_id] + ':* ');
-            client.sendMessage(superadmin, media);
+            // client.sendMessage(superadmin, '*' + chats[chat_id] + users[user_id] + ':* ');
+            // client.sendMessage(superadmin, media);
 
             let filename = ''
             if (media.filename) filename = 'file' + Math.round(Math.random() * 1E9) + media.filename
@@ -208,7 +208,7 @@ const client = new Client(
             headless: true,
             args: ['--no-sandbox', '--disable-setuid-sandbox'],
             // executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe',
-            executablePath: '/usr/bin/google-chrome-stable'
+            // executablePath: '/usr/bin/google-chrome-stable'
         }
     }
 );
@@ -256,7 +256,7 @@ client.on('message', message => {
 
                 })
 
-                client.sendMessage(superadmin, '*Mma (Yusuf):* ' + text);
+                // client.sendMessage(superadmin, '*Mma (Yusuf):* ' + text);
             }
         }
 
@@ -278,7 +278,7 @@ client.on('message', message => {
 
                 })
 
-                client.sendMessage(superadmin, '*Mma (Mustafa):* ' + text);
+                // client.sendMessage(superadmin, '*Mma (Mustafa):* ' + text);
             }
         }
 
@@ -304,8 +304,8 @@ client.on('message', message => {
 
                 console.log('sendMessage to admin ', emir)
 
-                client.sendMessage(superadmin, '*Deutz Bismarck (Emir):* ' + text);
-                client.sendMessage(superadmin2, '*Deutz Bismarck (Emir):* ' + text);
+                // client.sendMessage(superadmin, '*Deutz Bismarck (Emir):* ' + text);
+                // client.sendMessage(superadmin2, '*Deutz Bismarck (Emir):* ' + text);
             }
         }
 
@@ -331,8 +331,8 @@ client.on('message', message => {
 
                 console.log('sendMessage to admin ', ali)
 
-                client.sendMessage(superadmin, '*Zetech Jhon Deer (Ali):* ' + text);
-                client.sendMessage(superadmin2, '*Zetech Jhon Deer (Ali):* ' + text);
+                // client.sendMessage(superadmin, '*Zetech Jhon Deer (Ali):* ' + text);
+                // client.sendMessage(superadmin2, '*Zetech Jhon Deer (Ali):* ' + text);
             }
         }
 
@@ -358,8 +358,8 @@ client.on('message', message => {
 
                 console.log('sendMessage to admin ', berq)
 
-                client.sendMessage(superadmin, '*BERQ Perkins Liebherr:* ' + text);
-                client.sendMessage(superadmin2, '*BERQ Perkins Liebherr:* ' + text);
+                // client.sendMessage(superadmin, '*BERQ Perkins Liebherr:* ' + text);
+                // client.sendMessage(superadmin2, '*BERQ Perkins Liebherr:* ' + text);
             }
         }
 
@@ -385,8 +385,8 @@ client.on('message', message => {
 
                 console.log('sendMessage to admin ', israfil)
 
-                client.sendMessage(superadmin, '*CAT Original / OEM (israfil):* ' + text);
-                client.sendMessage(superadmin2, '*CAT Original / OEM (israfil):* ' + text);
+                // client.sendMessage(superadmin, '*CAT Original / OEM (israfil):* ' + text);
+                // client.sendMessage(superadmin2, '*CAT Original / OEM (israfil):* ' + text);
             }
         }
 
@@ -412,8 +412,8 @@ client.on('message', message => {
 
                 console.log('sendMessage to admin ', mehmet)
 
-                client.sendMessage(superadmin, '*Liebherr Original / TM (mehmet):* ' + text);
-                client.sendMessage(superadmin2, '*Liebherr Original / TM (mehmet):* ' + text);
+                // client.sendMessage(superadmin, '*Liebherr Original / TM (mehmet):* ' + text);
+                // client.sendMessage(superadmin2, '*Liebherr Original / TM (mehmet):* ' + text);
             }
         }
 
@@ -439,8 +439,8 @@ client.on('message', message => {
 
                 console.log('sendMessage to admin ', daisy)
 
-                client.sendMessage(superadmin, '*Jhon Deer Original China (daisy):* ' + text);
-                client.sendMessage(superadmin2, '*Jhon Deer Original China (daisy):* ' + text);
+                // client.sendMessage(superadmin, '*Jhon Deer Original China (daisy):* ' + text);
+                // client.sendMessage(superadmin2, '*Jhon Deer Original China (daisy):* ' + text);
             }
         }
 
@@ -466,8 +466,8 @@ client.on('message', message => {
 
                 console.log('sendMessage to admin ', ozlem)
 
-                client.sendMessage(superadmin, '*Bosch Denso Iveco Scania Daf Reno (Ozlem):* ' + text);
-                client.sendMessage(superadmin2, '*Bosch Denso Iveco Scania Daf Reno (Ozlem):* ' + text);
+                // client.sendMessage(superadmin, '*Bosch Denso Iveco Scania Daf Reno (Ozlem):* ' + text);
+                // client.sendMessage(superadmin2, '*Bosch Denso Iveco Scania Daf Reno (Ozlem):* ' + text);
             }
         }
 
@@ -513,50 +513,50 @@ app.post('/', upload.single('avatar'), function (req, res, next) {
         client.sendMessage(yusuf, text);
         client.sendMessage(mustafa, text);
 
-        client.sendMessage(superadmin, '*Mma (Katya):* ' + text);
-        client.sendMessage(superadmin2, '*Mma (Katya):* ' + text);
+        // client.sendMessage(superadmin, '*Mma (Katya):* ' + text);
+        // client.sendMessage(superadmin2, '*Mma (Katya):* ' + text);
     }
     else if (chat_id === 2) {
         console.log('sendmessage to chat bismark', chat_id)
         client.sendMessage(emir, text);
-        client.sendMessage(superadmin, '*Deutz Bismarck (Katya):* ' + text);
-        client.sendMessage(superadmin2, '*Deutz Bismarck (Katya):* ' + text);
+        // client.sendMessage(superadmin, '*Deutz Bismarck (Katya):* ' + text);
+        // client.sendMessage(superadmin2, '*Deutz Bismarck (Katya):* ' + text);
     }
     else if (chat_id === 3) {
         console.log('sendmessage to chat', chat_id)
         client.sendMessage(ali, text);
-        client.sendMessage(superadmin, '*Zetech Jhon Deer (Katya):* ' + text);
-        client.sendMessage(superadmin2, '*Zetech Jhon Deer (Katya):* ' + text);
+        // client.sendMessage(superadmin, '*Zetech Jhon Deer (Katya):* ' + text);
+        // client.sendMessage(superadmin2, '*Zetech Jhon Deer (Katya):* ' + text);
     }
     else if (chat_id === 4) {
         console.log('sendmessage to chat', chat_id)
         client.sendMessage(berq, text);
-        client.sendMessage(superadmin, '*BERQ Perkins Liebherr (Katya):* ' + text);
-        client.sendMessage(superadmin2, '*BERQ Perkins Liebherr (Katya):* ' + text);
+        // client.sendMessage(superadmin, '*BERQ Perkins Liebherr (Katya):* ' + text);
+        // client.sendMessage(superadmin2, '*BERQ Perkins Liebherr (Katya):* ' + text);
     }
     else if (chat_id === 5) {
         console.log('sendmessage to chat', chat_id)
         client.sendMessage(israfil, text);
-        client.sendMessage(superadmin, '*CAT Original / OEM (Katya):* ' + text);
-        client.sendMessage(superadmin2, '*CAT Original / OEM (Katya):* ' + text);
+        // client.sendMessage(superadmin, '*CAT Original / OEM (Katya):* ' + text);
+        // client.sendMessage(superadmin2, '*CAT Original / OEM (Katya):* ' + text);
     }
     else if (chat_id === 6) {
         console.log('sendmessage to chat', chat_id)
         client.sendMessage(mehmet, text);
-        client.sendMessage(superadmin, '*Liebherr Original / TM (Katya):* ' + text);
-        client.sendMessage(superadmin2, '*Liebherr Original / TM (Katya):* ' + text);
+        // client.sendMessage(superadmin, '*Liebherr Original / TM (Katya):* ' + text);
+        // client.sendMessage(superadmin2, '*Liebherr Original / TM (Katya):* ' + text);
     }
     else if (chat_id === 7) {
         console.log('sendmessage to chat', chat_id)
         client.sendMessage(daisy, text);
-        client.sendMessage(superadmin, '*Jhon Deer Original China (Katya):* ' + text);
-        client.sendMessage(superadmin2, '*Jhon Deer Original China (Katya):* ' + text);
+        // client.sendMessage(superadmin, '*Jhon Deer Original China (Katya):* ' + text);
+        // client.sendMessage(superadmin2, '*Jhon Deer Original China (Katya):* ' + text);
     }
     else if (chat_id === 8) {
         console.log('sendmessage to chat', chat_id)
         client.sendMessage(ozlem, text);
-        client.sendMessage(superadmin, '*Bosch Denso Iveco Scania Daf Reno (Katya):* ' + text);
-        client.sendMessage(superadmin2, '*Bosch Denso Iveco Scania Daf Reno (Katya):* ' + text);
+        // client.sendMessage(superadmin, '*Bosch Denso Iveco Scania Daf Reno (Katya):* ' + text);
+        // client.sendMessage(superadmin2, '*Bosch Denso Iveco Scania Daf Reno (Katya):* ' + text);
     }
     else console.log('no chats')
     // res.send({ 'res': true })
@@ -577,50 +577,50 @@ app.post('/file', upload.single('message_file'), function (req, res, next) {
         client.sendMessage(yusuf, media);
         client.sendMessage(mustafa, media);
 
-        client.sendMessage(superadmin, '*Mma (Katya):* ');
-        client.sendMessage(superadmin, media);
+        // client.sendMessage(superadmin, '*Mma (Katya):* ');
+        // client.sendMessage(superadmin, media);
     }
     else if (chat_id === 2) {
         client.sendMessage(emir, media);
 
-        client.sendMessage(superadmin, '*Deutz Bismarck (Katya):* ');
-        client.sendMessage(superadmin, media);
+        // client.sendMessage(superadmin, '*Deutz Bismarck (Katya):* ');
+        // client.sendMessage(superadmin, media);
     }
     else if (chat_id === 3) {
         client.sendMessage(ali, media);
 
-        client.sendMessage(superadmin, '*Zetech Jhon Deer (Katya):* ');
-        client.sendMessage(superadmin, media);
+        // client.sendMessage(superadmin, '*Zetech Jhon Deer (Katya):* ');
+        // client.sendMessage(superadmin, media);
     }
     else if (chat_id === 4) {
         client.sendMessage(berq, media);
 
-        client.sendMessage(superadmin, '*BERQ Perkins Liebherr (Katya):* ');
-        client.sendMessage(superadmin, media);
+        // client.sendMessage(superadmin, '*BERQ Perkins Liebherr (Katya):* ');
+        // client.sendMessage(superadmin, media);
     }
     else if (chat_id === 5) {
         client.sendMessage(israfil, media);
 
-        client.sendMessage(superadmin, '*CAT Original / OEM (Katya):* ');
-        client.sendMessage(superadmin, media);
+        // client.sendMessage(superadmin, '*CAT Original / OEM (Katya):* ');
+        // client.sendMessage(superadmin, media);
     }
     else if (chat_id === 6) {
         client.sendMessage(mehmet, media);
 
-        client.sendMessage(superadmin, '*Liebherr Original / TM (Katya):* ');
-        client.sendMessage(superadmin, media);
+        // client.sendMessage(superadmin, '*Liebherr Original / TM (Katya):* ');
+        // client.sendMessage(superadmin, media);
     }
     else if (chat_id === 7) {
         client.sendMessage(daisy, media);
 
-        client.sendMessage(superadmin, '*Jhon Deer Original China (Katya):* ');
-        client.sendMessage(superadmin, media);
+        // client.sendMessage(superadmin, '*Jhon Deer Original China (Katya):* ');
+        // client.sendMessage(superadmin, media);
     }
     else if (chat_id === 8) {
         client.sendMessage(ozlem, media);
 
-        client.sendMessage(superadmin, '*Bosch Denso Iveco Scania Daf Reno (Katya):* ');
-        client.sendMessage(superadmin, media);
+        // client.sendMessage(superadmin, '*Bosch Denso Iveco Scania Daf Reno (Katya):* ');
+        // client.sendMessage(superadmin, media);
     }
     // client.sendMessage(superadmin, media);
     // res.send({ res: 'good' })
