@@ -208,7 +208,7 @@ const client = new Client(
             headless: true,
             args: ['--no-sandbox', '--disable-setuid-sandbox'],
             // executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe',
-            // executablePath: '/usr/bin/google-chrome-stable'
+            executablePath: '/usr/bin/google-chrome-stable'
         }
     }
 );
@@ -562,6 +562,12 @@ app.post('/', upload.single('avatar'), function (req, res, next) {
     else if (chat_id === 8) {
         console.log('sendmessage to chat', chat_id)
         sendToUser(ozlem, text);
+        // sendToUser(superadmin, '*Bosch Denso Iveco Scania Daf Reno (Katya):* ' + text);
+        // sendToUser(superadmin2, '*Bosch Denso Iveco Scania Daf Reno (Katya):* ' + text);
+    }
+    else if (chat_id === 9) {
+        console.log('sendmessage to chat', chat_id)
+        sendToUser(superadmin2, text);
         // sendToUser(superadmin, '*Bosch Denso Iveco Scania Daf Reno (Katya):* ' + text);
         // sendToUser(superadmin2, '*Bosch Denso Iveco Scania Daf Reno (Katya):* ' + text);
     }
