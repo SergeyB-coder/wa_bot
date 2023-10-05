@@ -471,6 +471,33 @@ client.on('message', message => {
             }
         }
 
+        else if (message.from === superadmin2) {
+            // checkMedia(message, 10, 8)
+            console.log('message.from', superadmin2)
+
+            let stop_word = checkWordIsStop(message.body)
+            if (stop_word) {
+                client.sendMessage(admin, 'ATTENTION!!! stop word from ozlem in message: ' + message.body + '\nCHAT -  Bosch Denso Iveco Scania Daf Reno: ' + stop_word);
+                // client.sendMessage(superadmin, 'ATTENTION'+emir);
+                console.log('stopword')
+            }
+            else {
+
+                sendMessageToServer({
+                    text: message.body,
+                    user_id: 11,
+                    chat_id: 9
+                }, (data) => {
+
+                })
+
+                console.log('sendMessage to admin ', ozlem)
+
+                // client.sendMessage(superadmin, '*Bosch Denso Iveco Scania Daf Reno (Ozlem):* ' + text);
+                // client.sendMessage(superadmin2, '*Bosch Denso Iveco Scania Daf Reno (Ozlem):* ' + text);
+            }
+        }
+
         // else if (message.from === superadmin2) {
         //     checkMedia(message, 1, 2)
         //     console.log('message.from ', superadmin2)
