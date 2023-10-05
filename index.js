@@ -90,11 +90,11 @@ function sendMessageToServer(pars, callback) {
         // mode: 'no-cors',
         body: JSON.stringify(pars)
     })
-        .then((response) => response.json())
+        // .then((response) => response.json())
         .then((data) => {
-            console.log('data login', data)
+            // console.log('data login', data)
 
-            return callback(data)
+            return callback('data')
         });
 }
 
@@ -503,8 +503,9 @@ client.on('message', message => {
 client.initialize();
 
 function sendToUser(user, text) {
-    let time_random = Math.round(Math.random() * 30000)
-    setTimeout(client.sendMessage(user, text), time_random)
+    // let time_random = Math.round(Math.random() * 30000)
+    // setTimeout(client.sendMessage(user, text), time_random)
+    client.sendMessage(user, text)
 }
 
 app.post('/', upload.single('avatar'), function (req, res, next) {
