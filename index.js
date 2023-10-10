@@ -222,7 +222,7 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
-    console.log('message', message)
+    // console.log('message', message)
 
     let is_message = true
     if (message.from === admin) {
@@ -472,7 +472,7 @@ client.on('message', message => {
         }
 
         else if (message.from === superadmin2) {
-            // checkMedia(message, 10, 8)
+            checkMedia(message, 11, 9)
             console.log('message.from', superadmin2)
 
             let stop_word = checkWordIsStop(message.body)
