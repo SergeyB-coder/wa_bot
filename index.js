@@ -76,7 +76,8 @@ const ozlem = '905301697987@c.us'
 const url = 'https://testapi.na4u.ru'
 
 const extentions = {
-    'image/jpeg': 'jpg'
+    'image/jpeg': 'jpg',
+    'video/mp4': 'mp4'
 }
 
 function sendMessageToServer(pars, callback) {
