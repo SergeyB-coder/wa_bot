@@ -53,7 +53,7 @@ const mustafa = '905327372393@c.us'
 const yusuf = '905355472205@c.us'
 
 // Deutz Bismarck chat
-const emir = '905360679598@c.us'
+const emir = '905366260799@c.us'
 
 //  Zetech Jhon Deer 3
 const ali = '905327431514@c.us'
