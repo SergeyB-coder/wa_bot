@@ -607,10 +607,10 @@ app.post('/', upload.single('avatar'), function (req, res, next) {
 
 
 app.post('/file', upload.single('message_file'), function (req, res, next) {
-    console.log('file: ', req.body)
+    
     const file = req.file;
     const chat_id = req.body.chat_id
-
+    console.log('file: ', file.filename)
 
     const media = MessageMedia.fromFilePath('./public/static/uploads/' + file.filename);
 
@@ -659,6 +659,12 @@ app.post('/file', upload.single('message_file'), function (req, res, next) {
     }
     else if (chat_id === 8) {
         sendToUser(ozlem, media);
+
+        // sendToUser(superadmin, '*Bosch Denso Iveco Scania Daf Reno (Katya):* ');
+        // sendToUser(superadmin, media);
+    }
+    else if (chat_id === 9) {
+        sendToUser(superadmin2, media);
 
         // sendToUser(superadmin, '*Bosch Denso Iveco Scania Daf Reno (Katya):* ');
         // sendToUser(superadmin, media);
