@@ -533,6 +533,7 @@ client.initialize();
 function sendToUser(user, text) {
     // let time_random = Math.round(Math.random() * 30000)
     // setTimeout(client.sendMessage(user, text), time_random)
+    console.log('sendToUser', text)
     client.sendMessage(user, text)
 }
 
