@@ -611,7 +611,7 @@ app.post('/file', upload.single('message_file'), function (req, res, next) {
     
     const file = req.file;
     const chat_id = req.body.chat_id
-    console.log('file: ', file.filename)
+    console.log('file: ', file.filename, chat_id)
 
     const media = MessageMedia.fromFilePath('./public/static/uploads/' + file.filename);
 
