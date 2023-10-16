@@ -622,8 +622,8 @@ app.post('/file', upload.single('message_file'), function (req, res, next) {
         const media = MessageMedia.fromFilePath('./public/static/uploads/' + file.filename);
 
         if (chat_id === 1) {
-            sendToUser(yusuf, media);
-            // sendToUser(mustafa, media);
+            // sendToUser(yusuf, media);
+            sendToUser(mustafa, media);
 
             // sendToUser(superadmin, '*Mma (Katya):* ');
             // sendToUser(superadmin, media);
