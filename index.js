@@ -608,7 +608,7 @@ app.post('/', upload.single('avatar'), function (req, res, next) {
 
 
 app.post('/file', upload.single('message_file'), function (req, res, next) {
-    console.log('req', req.file)
+    console.log('req', req.files)
     const file = req.file;
     const chat_id = parseInt(req.body.chat_id)
     if (req.file) {
