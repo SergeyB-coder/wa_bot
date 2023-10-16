@@ -15,6 +15,7 @@ const storage = multer.diskStorage({
         cb(null, './public/static/uploads');
     },
     filename: function (req, file, cb) {
+        console.log('file.originalname ', file.originalname)
         //   const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     }
@@ -610,6 +611,7 @@ app.post('/', upload.single('avatar'), function (req, res, next) {
 app.post('/file', upload.single('message_file'), function (req, res, next) {
     console.log('req', Object.keys(req))
     const file = req.file;
+    console.log('file ', Object.keys(file))
     const chat_id = parseInt(req.body.chat_id)
     if (req.file) {
         console.log('file: ', file.filename, chat_id, chat_id === 9)
