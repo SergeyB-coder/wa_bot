@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
     },
     filename: function (req, file, cb) {
         //   const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-        console.log('file.originalname', file.originalname)
+        // console.log('file.originalname', file.originalname)
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     }
 });
@@ -534,12 +534,12 @@ client.initialize();
 function sendToUser(user, text) {
     // let time_random = Math.round(Math.random() * 30000)
     // setTimeout(client.sendMessage(user, text), time_random)
-    console.log('sendToUser', text)
+    // console.log('sendToUser', text)
     client.sendMessage(user, text)
 }
 
 app.post('/', upload.single('avatar'), function (req, res, next) {
-    console.log('sendmessage', req.body)
+    // console.log('sendmessage', req.body)
     const chat_id = parseInt(req.body.chat_id)
     const text = req.body.text
 
