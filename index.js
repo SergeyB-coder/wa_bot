@@ -15,8 +15,8 @@ const storage = multer.diskStorage({
         cb(null, './public/static/uploads');
     },
     filename: function (req, file, cb) {
-        console.log('file.originalname ', file.originalname)
         //   const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+        console.log('file.originalname', file.originalname)
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     }
 });
@@ -101,7 +101,7 @@ function sendMessageToServer(pars, callback) {
 }
 
 function sendFileToServer(pars, callback) {
-    console.log('sendFileToServer', pars)
+    // console.log('sendFileToServer', pars)
     fetch(url + '/wafile', {
         method: 'POST',
         headers: {
@@ -113,7 +113,7 @@ function sendFileToServer(pars, callback) {
     })
         .then((response) => response.json())
         .then((data) => {
-            console.log('data login', data)
+            // console.log('data login', data)
 
             return callback(data)
         });
@@ -609,12 +609,12 @@ app.post('/', upload.single('avatar'), function (req, res, next) {
 
 
 app.post('/file', upload.single('message_file'), function (req, res, next) {
-    console.log('req', Object.keys(req))
+    // console.log('req', Object.keys(req))
     const file = req.file;
-    console.log('file ', Object.keys(file))
+    // console.log('file ', Object.keys(file))
     const chat_id = parseInt(req.body.chat_id)
     if (req.file) {
-        console.log('file: ', file.filename, chat_id, chat_id === 9)
+        // console.log('file: ', file.filename, chat_id, chat_id === 9)
 
         const media = MessageMedia.fromFilePath('./public/static/uploads/' + file.filename);
 
