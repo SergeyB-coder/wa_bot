@@ -609,7 +609,7 @@ app.post('/', upload.single('avatar'), function (req, res, next) {
 
 app.post('/file', upload.single('message_file'), function (req, res, next) {
     console.log('req', req)
-    const file = req.file;
+    const file = req.body.message_file;
     const chat_id = parseInt(req.body.chat_id)
     console.log('file: ', file.filename, chat_id, chat_id === 9)
 
