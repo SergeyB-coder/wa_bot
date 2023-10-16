@@ -608,67 +608,69 @@ app.post('/', upload.single('avatar'), function (req, res, next) {
 
 
 app.post('/file', upload.single('message_file'), function (req, res, next) {
-    console.log('req', req)
-    const file = req.body.message_file;
+    console.log('req', req.file)
+    const file = req.file;
     const chat_id = parseInt(req.body.chat_id)
-    console.log('file: ', file.filename, chat_id, chat_id === 9)
+    if (req.file) {
+        console.log('file: ', file.filename, chat_id, chat_id === 9)
 
-    const media = MessageMedia.fromFilePath('./public/static/uploads/' + file.filename);
+        const media = MessageMedia.fromFilePath('./public/static/uploads/' + file.filename);
 
-    if (chat_id === 1) {
-        sendToUser(yusuf, media);
-        // sendToUser(mustafa, media);
+        if (chat_id === 1) {
+            sendToUser(yusuf, media);
+            // sendToUser(mustafa, media);
 
-        // sendToUser(superadmin, '*Mma (Katya):* ');
-        // sendToUser(superadmin, media);
-    }
-    else if (chat_id === 2) {
-        sendToUser(emir, media);
+            // sendToUser(superadmin, '*Mma (Katya):* ');
+            // sendToUser(superadmin, media);
+        }
+        else if (chat_id === 2) {
+            sendToUser(emir, media);
 
-        // sendToUser(superadmin, '*Deutz Bismarck (Katya):* ');
-        // sendToUser(superadmin, media);
-    }
-    else if (chat_id === 3) {
-        sendToUser(ali, media);
+            // sendToUser(superadmin, '*Deutz Bismarck (Katya):* ');
+            // sendToUser(superadmin, media);
+        }
+        else if (chat_id === 3) {
+            sendToUser(ali, media);
 
-        // sendToUser(superadmin, '*Zetech Jhon Deer (Katya):* ');
-        // sendToUser(superadmin, media);
-    }
-    else if (chat_id === 4) {
-        sendToUser(berq, media);
+            // sendToUser(superadmin, '*Zetech Jhon Deer (Katya):* ');
+            // sendToUser(superadmin, media);
+        }
+        else if (chat_id === 4) {
+            sendToUser(berq, media);
 
-        // sendToUser(superadmin, '*BERQ Perkins Liebherr (Katya):* ');
-        // sendToUser(superadmin, media);
-    }
-    else if (chat_id === 5) {
-        sendToUser(israfil, media);
+            // sendToUser(superadmin, '*BERQ Perkins Liebherr (Katya):* ');
+            // sendToUser(superadmin, media);
+        }
+        else if (chat_id === 5) {
+            sendToUser(israfil, media);
 
-        // sendToUser(superadmin, '*CAT Original / OEM (Katya):* ');
-        // sendToUser(superadmin, media);
-    }
-    else if (chat_id === 6) {
-        sendToUser(mehmet, media);
+            // sendToUser(superadmin, '*CAT Original / OEM (Katya):* ');
+            // sendToUser(superadmin, media);
+        }
+        else if (chat_id === 6) {
+            sendToUser(mehmet, media);
 
-        // sendToUser(superadmin, '*Liebherr Original / TM (Katya):* ');
-        // sendToUser(superadmin, media);
-    }
-    else if (chat_id === 7) {
-        sendToUser(daisy, media);
+            // sendToUser(superadmin, '*Liebherr Original / TM (Katya):* ');
+            // sendToUser(superadmin, media);
+        }
+        else if (chat_id === 7) {
+            sendToUser(daisy, media);
 
-        // sendToUser(superadmin, '*Jhon Deer Original China (Katya):* ');
-        // sendToUser(superadmin, media);
-    }
-    else if (chat_id === 8) {
-        sendToUser(ozlem, media);
+            // sendToUser(superadmin, '*Jhon Deer Original China (Katya):* ');
+            // sendToUser(superadmin, media);
+        }
+        else if (chat_id === 8) {
+            sendToUser(ozlem, media);
 
-        // sendToUser(superadmin, '*Bosch Denso Iveco Scania Daf Reno (Katya):* ');
-        // sendToUser(superadmin, media);
-    }
-    else if (chat_id === 9) {
-        sendToUser(superadmin2, media);
+            // sendToUser(superadmin, '*Bosch Denso Iveco Scania Daf Reno (Katya):* ');
+            // sendToUser(superadmin, media);
+        }
+        else if (chat_id === 9) {
+            sendToUser(superadmin2, media);
 
-        // sendToUser(superadmin, '*Bosch Denso Iveco Scania Daf Reno (Katya):* ');
-        // sendToUser(superadmin, media);
+            // sendToUser(superadmin, '*Bosch Denso Iveco Scania Daf Reno (Katya):* ');
+            // sendToUser(superadmin, media);
+        }
     }
     // sendToUser(superadmin, media);
     // res.send({ res: 'good' })
