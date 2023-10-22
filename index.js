@@ -252,11 +252,14 @@ client.on('message', message => {
                 // client.sendMessage(superadmin, 'ATTENTION'+igor);
             }
             else {
-
+                // let quoted_id = ''
+                // if (message.hasQuotedMsg) quoted_id = message._data.quotedStanzaID
                 sendMessageToServer({
                     text: message.body,
                     user_id: 3,
                     chat_id: 1
+                    // message_id: message.id._serialized,
+                    // quoted_id: quoted_id
                 }, (data) => {
 
                 })
@@ -487,11 +490,14 @@ client.on('message', message => {
                 console.log('stopword')
             }
             else {
-
+                let quoted_id = ''
+                if (message.hasQuotedMsg) quoted_id = message._data.quotedStanzaID
                 sendMessageToServer({
                     text: message.body,
                     user_id: 11,
-                    chat_id: 9
+                    chat_id: 9,
+                    message_id: message.id._serialized,
+                    quoted_id: quoted_id
                 }, (data) => {
 
                 })
