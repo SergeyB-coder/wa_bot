@@ -611,8 +611,8 @@ app.post('/', upload.single('avatar'), function (req, res, next) {
     }
     else if (chat_id === 9) {
         console.log('sendmessage to chat', chat_id)
-        sendToUser(superadmin2, text, (res) => {
-            res.send({ message_id: res.message_id })
+        sendToUser(superadmin2, text, (data) => {
+            res.send({ message_id: data.message_id })
         });
     }
     else console.log('no chats')
