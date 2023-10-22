@@ -496,7 +496,8 @@ client.on('message', message => {
                     text: message.body,
                     user_id: 11,
                     chat_id: 9,
-                    message_id: message.id._serialized,
+                    serialized_id: message.id._serialized,
+                    message_id: message.id.id,
                     quoted_id: quoted_id
                 }, (data) => {
 
@@ -540,11 +541,15 @@ client.on('message', message => {
 
 client.initialize();
 
-function sendToUser(user, text) {
+function sendToUser(user, text, callback) {
     // let time_random = Math.round(Math.random() * 30000)
     // setTimeout(client.sendMessage(user, text), time_random)
     // console.log('sendToUser', text)
     client.sendMessage(user, text)
+    .then((msg) => {
+        const message_id = msg.id.id
+        return callback({message_id: message_id})
+    })
 }
 
 app.post('/', upload.single('avatar'), function (req, res, next) {
@@ -606,12 +611,11 @@ app.post('/', upload.single('avatar'), function (req, res, next) {
     }
     else if (chat_id === 9) {
         console.log('sendmessage to chat', chat_id)
-        sendToUser(superadmin2, text);
-        // sendToUser(superadmin, '*Bosch Denso Iveco Scania Daf Reno (Katya):* ' + text);
-        // sendToUser(superadmin2, '*Bosch Denso Iveco Scania Daf Reno (Katya):* ' + text);
+        sendToUser(superadmin2, text, (res) => {
+            res.send({ message_id: res.message_id })
+        });
     }
     else console.log('no chats')
-    // res.send({ 'res': true })
 }
 )
 
