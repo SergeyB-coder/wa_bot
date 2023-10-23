@@ -251,14 +251,15 @@ client.on('message', message => {
                 // client.sendMessage(superadmin, 'ATTENTION'+igor);
             }
             else {
-                // let quoted_id = ''
-                // if (message.hasQuotedMsg) quoted_id = message._data.quotedStanzaID
+                let quoted_id = ''
+                if (message.hasQuotedMsg) quoted_id = message._data.quotedStanzaID
                 sendMessageToServer({
                     text: message.body,
                     user_id: 3,
-                    chat_id: 1
-                    // message_id: message.id._serialized,
-                    // quoted_id: quoted_id
+                    chat_id: 1,
+                    serialized_id: message.id._serialized,
+                    message_id: message.id.id,
+                    quoted_id: quoted_id
                 }, (data) => {
 
                 })
@@ -276,16 +277,18 @@ client.on('message', message => {
 
             }
             else {
-
+                let quoted_id = ''
+                if (message.hasQuotedMsg) quoted_id = message._data.quotedStanzaID
                 sendMessageToServer({
                     text: message.body,
                     user_id: 4,
-                    chat_id: 1
+                    chat_id: 1,
+                    serialized_id: message.id._serialized,
+                    message_id: message.id.id,
+                    quoted_id: quoted_id
                 }, (data) => {
 
                 })
-
-                // client.sendMessage(superadmin, '*Mma (Mustafa):* ' + text);
             }
         }
 
@@ -300,19 +303,18 @@ client.on('message', message => {
                 console.log('stopword')
             }
             else {
-
+                let quoted_id = ''
+                if (message.hasQuotedMsg) quoted_id = message._data.quotedStanzaID
                 sendMessageToServer({
                     text: message.body,
                     user_id: 1,
-                    chat_id: 2
+                    chat_id: 2,
+                    serialized_id: message.id._serialized,
+                    message_id: message.id.id,
+                    quoted_id: quoted_id
                 }, (data) => {
 
                 })
-
-                console.log('sendMessage to admin ', emir)
-
-                // client.sendMessage(superadmin, '*Deutz Bismarck (Emir):* ' + text);
-                // client.sendMessage(superadmin2, '*Deutz Bismarck (Emir):* ' + text);
             }
         }
 
@@ -327,19 +329,18 @@ client.on('message', message => {
                 console.log('stopword')
             }
             else {
-
+                let quoted_id = ''
+                if (message.hasQuotedMsg) quoted_id = message._data.quotedStanzaID
                 sendMessageToServer({
                     text: message.body,
                     user_id: 5,
-                    chat_id: 3
+                    chat_id: 3,
+                    serialized_id: message.id._serialized,
+                    message_id: message.id.id,
+                    quoted_id: quoted_id
                 }, (data) => {
 
                 })
-
-                console.log('sendMessage to admin ', ali)
-
-                // client.sendMessage(superadmin, '*Zetech Jhon Deer (Ali):* ' + text);
-                // client.sendMessage(superadmin2, '*Zetech Jhon Deer (Ali):* ' + text);
             }
         }
 
@@ -354,19 +355,18 @@ client.on('message', message => {
                 console.log('stopword')
             }
             else {
-
+                let quoted_id = ''
+                if (message.hasQuotedMsg) quoted_id = message._data.quotedStanzaID
                 sendMessageToServer({
                     text: message.body,
                     user_id: 6,
-                    chat_id: 4
+                    chat_id: 4,
+                    serialized_id: message.id._serialized,
+                    message_id: message.id.id,
+                    quoted_id: quoted_id
                 }, (data) => {
 
                 })
-
-                console.log('sendMessage to admin ', berq)
-
-                // client.sendMessage(superadmin, '*BERQ Perkins Liebherr:* ' + text);
-                // client.sendMessage(superadmin2, '*BERQ Perkins Liebherr:* ' + text);
             }
         }
 
@@ -381,19 +381,18 @@ client.on('message', message => {
                 console.log('stopword')
             }
             else {
-
+                let quoted_id = ''
+                if (message.hasQuotedMsg) quoted_id = message._data.quotedStanzaID
                 sendMessageToServer({
                     text: message.body,
                     user_id: 7,
-                    chat_id: 5
+                    chat_id: 5,
+                    serialized_id: message.id._serialized,
+                    message_id: message.id.id,
+                    quoted_id: quoted_id
                 }, (data) => {
 
                 })
-
-                console.log('sendMessage to admin ', israfil)
-
-                // client.sendMessage(superadmin, '*CAT Original / OEM (israfil):* ' + text);
-                // client.sendMessage(superadmin2, '*CAT Original / OEM (israfil):* ' + text);
             }
         }
 
@@ -408,19 +407,18 @@ client.on('message', message => {
                 console.log('stopword')
             }
             else {
-
+                let quoted_id = ''
+                if (message.hasQuotedMsg) quoted_id = message._data.quotedStanzaID
                 sendMessageToServer({
                     text: message.body,
                     user_id: 8,
-                    chat_id: 6
+                    chat_id: 6,
+                    serialized_id: message.id._serialized,
+                    message_id: message.id.id,
+                    quoted_id: quoted_id
                 }, (data) => {
 
                 })
-
-                console.log('sendMessage to admin ', mehmet)
-
-                // client.sendMessage(superadmin, '*Liebherr Original / TM (mehmet):* ' + text);
-                // client.sendMessage(superadmin2, '*Liebherr Original / TM (mehmet):* ' + text);
             }
         }
 
@@ -435,19 +433,18 @@ client.on('message', message => {
                 console.log('stopword')
             }
             else {
-
+                let quoted_id = ''
+                if (message.hasQuotedMsg) quoted_id = message._data.quotedStanzaID
                 sendMessageToServer({
                     text: message.body,
                     user_id: 9,
-                    chat_id: 7
+                    chat_id: 7,
+                    serialized_id: message.id._serialized,
+                    message_id: message.id.id,
+                    quoted_id: quoted_id
                 }, (data) => {
 
                 })
-
-                console.log('sendMessage to admin ', daisy)
-
-                // client.sendMessage(superadmin, '*Jhon Deer Original China (daisy):* ' + text);
-                // client.sendMessage(superadmin2, '*Jhon Deer Original China (daisy):* ' + text);
             }
         }
 
@@ -462,19 +459,18 @@ client.on('message', message => {
                 console.log('stopword')
             }
             else {
-
+                let quoted_id = ''
+                if (message.hasQuotedMsg) quoted_id = message._data.quotedStanzaID
                 sendMessageToServer({
                     text: message.body,
                     user_id: 10,
-                    chat_id: 8
+                    chat_id: 8,
+                    serialized_id: message.id._serialized,
+                    message_id: message.id.id,
+                    quoted_id: quoted_id
                 }, (data) => {
 
                 })
-
-                console.log('sendMessage to admin ', ozlem)
-
-                // client.sendMessage(superadmin, '*Bosch Denso Iveco Scania Daf Reno (Ozlem):* ' + text);
-                // client.sendMessage(superadmin2, '*Bosch Denso Iveco Scania Daf Reno (Ozlem):* ' + text);
             }
         }
 
