@@ -175,8 +175,7 @@ async function checkMedia(message, user_id, chat_id) {
             const media = await message.downloadMedia();
             console.log('file data: ', media.mimetype)
 
-            // sendToUser(superadmin, '*' + chats[chat_id] + users[user_id] + ':* ');
-            // sendToUser(superadmin, media);
+            
 
             let filename = ''
             if (media.filename) filename = 'file' + Math.round(Math.random() * 1E9) + media.filename
@@ -264,7 +263,7 @@ client.on('message', message => {
 
                 })
 
-                // sendToUser(superadmin, '*Mma (Yusuf):* ' + text);
+                
             }
         }
 
@@ -542,15 +541,13 @@ client.on('message', message => {
 client.initialize();
 
 function sendToUser(user, text, callback) {
-    // let time_random = Math.round(Math.random() * 30000)
-    // setTimeout(client.sendMessage(user, text), time_random)
-    // console.log('sendToUser', text)
     client.sendMessage(user, text)
     .then((msg) => {
         const message_id = msg.id.id
         return callback({message_id: message_id})
     })
 }
+
 
 app.post('/', upload.single('avatar'), function (req, res, next) {
     // console.log('sendmessage', req.body)
@@ -561,53 +558,51 @@ app.post('/', upload.single('avatar'), function (req, res, next) {
         console.log('sendmessage to chat mma', chat_id)
 
         // client.sendMessage(yusuf, text);
-        sendToUser(mustafa, text);
-        // sendToUser()
-
-        // client.sendMessage(superadmin, '*Mma (Katya):* ' + text);
-        // client.sendMessage(superadmin2, '*Mma (Katya):* ' + text);
+        sendToUser(mustafa, text, (data) => {
+            res.send({ message_id: data.message_id })
+        });
     }
     else if (chat_id === 2) {
         console.log('sendmessage to chat bismark', chat_id)
-        sendToUser(emir, text);
-        // sendToUser(superadmin, '*Deutz Bismarck (Katya):* ' + text);
-        // sendToUser(superadmin2, '*Deutz Bismarck (Katya):* ' + text);
+        sendToUser(emir, text, (data) => {
+            res.send({ message_id: data.message_id })
+        });
     }
     else if (chat_id === 3) {
         console.log('sendmessage to chat', chat_id)
-        sendToUser(ali, text);
-        // sendToUser(superadmin, '*Zetech Jhon Deer (Katya):* ' + text);
-        // sendToUser(superadmin2, '*Zetech Jhon Deer (Katya):* ' + text);
+        sendToUser(ali, text, (data) => {
+            res.send({ message_id: data.message_id })
+        });
     }
     else if (chat_id === 4) {
         console.log('sendmessage to chat', chat_id)
-        sendToUser(berq, text);
-        // sendToUser(superadmin, '*BERQ Perkins Liebherr (Katya):* ' + text);
-        // sendToUser(superadmin2, '*BERQ Perkins Liebherr (Katya):* ' + text);
+        sendToUser(berq, text, (data) => {
+            res.send({ message_id: data.message_id })
+        });
     }
     else if (chat_id === 5) {
         console.log('sendmessage to chat', chat_id)
-        sendToUser(israfil, text);
-        // sendToUser(superadmin, '*CAT Original / OEM (Katya):* ' + text);
-        // sendToUser(superadmin2, '*CAT Original / OEM (Katya):* ' + text);
+        sendToUser(israfil, text, (data) => {
+            res.send({ message_id: data.message_id })
+        });
     }
     else if (chat_id === 6) {
         console.log('sendmessage to chat', chat_id)
-        sendToUser(mehmet, text);
-        // sendToUser(superadmin, '*Liebherr Original / TM (Katya):* ' + text);
-        // sendToUser(superadmin2, '*Liebherr Original / TM (Katya):* ' + text);
+        sendToUser(mehmet, text, (data) => {
+            res.send({ message_id: data.message_id })
+        });
     }
     else if (chat_id === 7) {
         console.log('sendmessage to chat', chat_id)
-        sendToUser(daisy, text);
-        // sendToUser(superadmin, '*Jhon Deer Original China (Katya):* ' + text);
-        // sendToUser(superadmin2, '*Jhon Deer Original China (Katya):* ' + text);
+        sendToUser(daisy, text, (data) => {
+            res.send({ message_id: data.message_id })
+        });
     }
     else if (chat_id === 8) {
         console.log('sendmessage to chat', chat_id)
-        sendToUser(ozlem, text);
-        // sendToUser(superadmin, '*Bosch Denso Iveco Scania Daf Reno (Katya):* ' + text);
-        // sendToUser(superadmin2, '*Bosch Denso Iveco Scania Daf Reno (Katya):* ' + text);
+        sendToUser(ozlem, text, (data) => {
+            res.send({ message_id: data.message_id })
+        });
     }
     else if (chat_id === 9) {
         console.log('sendmessage to chat', chat_id)
@@ -632,62 +627,60 @@ app.post('/file', upload.single('message_file'), function (req, res, next) {
         const media = MessageMedia.fromFilePath('./public/static/uploads/' + file.filename);
 
         if (chat_id === 1) {
-            // sendToUser(yusuf, media);
-            sendToUser(mustafa, media);
+            sendToUser(mustafa, media, (data) => {
+                res.send({ message_id: data.message_id })
+            });
 
-            // sendToUser(superadmin, '*Mma (Katya):* ');
-            // sendToUser(superadmin, media);
+            
         }
         else if (chat_id === 2) {
-            sendToUser(emir, media);
-
-            // sendToUser(superadmin, '*Deutz Bismarck (Katya):* ');
-            // sendToUser(superadmin, media);
+            sendToUser(emir, media, (data) => {
+                res.send({ message_id: data.message_id })
+            });
         }
         else if (chat_id === 3) {
-            sendToUser(ali, media);
-
-            // sendToUser(superadmin, '*Zetech Jhon Deer (Katya):* ');
-            // sendToUser(superadmin, media);
+            sendToUser(ali, media, (data) => {
+                res.send({ message_id: data.message_id })
+            });
         }
         else if (chat_id === 4) {
-            sendToUser(berq, media);
-
-            // sendToUser(superadmin, '*BERQ Perkins Liebherr (Katya):* ');
-            // sendToUser(superadmin, media);
+            sendToUser(berq, media, (data) => {
+                res.send({ message_id: data.message_id })
+            });
         }
         else if (chat_id === 5) {
-            sendToUser(israfil, media);
-
-            // sendToUser(superadmin, '*CAT Original / OEM (Katya):* ');
-            // sendToUser(superadmin, media);
+            sendToUser(israfil, media, (data) => {
+                res.send({ message_id: data.message_id })
+            });
         }
         else if (chat_id === 6) {
-            sendToUser(mehmet, media);
+            sendToUser(mehmet, media, (data) => {
+                res.send({ message_id: data.message_id })
+            });
 
-            // sendToUser(superadmin, '*Liebherr Original / TM (Katya):* ');
-            // sendToUser(superadmin, media);
+            
         }
         else if (chat_id === 7) {
-            sendToUser(daisy, media);
+            sendToUser(daisy, media, (data) => {
+                res.send({ message_id: data.message_id })
+            });
 
-            // sendToUser(superadmin, '*Jhon Deer Original China (Katya):* ');
-            // sendToUser(superadmin, media);
+            
         }
         else if (chat_id === 8) {
-            sendToUser(ozlem, media);
+            sendToUser(ozlem, media, (data) => {
+                res.send({ message_id: data.message_id })
+            });
 
-            // sendToUser(superadmin, '*Bosch Denso Iveco Scania Daf Reno (Katya):* ');
-            // sendToUser(superadmin, media);
+            
         }
         else if (chat_id === 9) {
-            sendToUser(superadmin2, media);
+            sendToUser(superadmin2, media, (data) => {
+                res.send({ message_id: data.message_id })
+            });
 
-            // sendToUser(superadmin, '*Bosch Denso Iveco Scania Daf Reno (Katya):* ');
-            // sendToUser(superadmin, media);
+            
         }
     }
-    // sendToUser(superadmin, media);
-    // res.send({ res: 'good' })
 })
-// v13
+// v14
