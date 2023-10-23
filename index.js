@@ -541,6 +541,7 @@ client.on('message', message => {
 client.initialize();
 
 function sendToUser(user, text, serialized_id, callback) {
+    console.log('serialized_id ', serialized_id)
     if (serialized_id) {
         client.sendMessage(user, text, { quotedMessageId: serialized_id })
             .then((msg) => {
