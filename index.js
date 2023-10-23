@@ -481,6 +481,7 @@ client.on('message', message => {
         else if (message.from === superadmin2) {
             checkMedia(message, 11, 9)
             console.log('message.from', superadmin2)
+            console.log('message.from', message.id._serialized)
 
             let stop_word = checkWordIsStop(message.body)
             if (stop_word) {
@@ -553,6 +554,7 @@ function sendToUser(user, text, serialized_id, callback) {
     else {
         client.sendMessage(user, text)
             .then((msg) => {
+                console.log('msg.id._serialized ', msg.id._serialized)
                 const message_id = msg.id.id
                 const serialized_id = msg.id._serialized
                 return callback({ message_id: message_id, serialized_id: serialized_id })
