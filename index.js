@@ -175,7 +175,7 @@ async function checkMedia(message, user_id, chat_id) {
             const media = await message.downloadMedia();
             console.log('file data: ', media.mimetype)
 
-            
+
 
             let filename = ''
             if (media.filename) filename = 'file' + Math.round(Math.random() * 1E9) + media.filename
@@ -263,7 +263,7 @@ client.on('message', message => {
 
                 })
 
-                
+
             }
         }
 
@@ -540,12 +540,23 @@ client.on('message', message => {
 
 client.initialize();
 
-function sendToUser(user, text, callback) {
-    client.sendMessage(user, text)
-    .then((msg) => {
-        const message_id = msg.id.id
-        return callback({message_id: message_id})
-    })
+function sendToUser(user, text, serialized_id, callback) {
+    if (serialized_id) {
+        client.sendMessage(user, text, { quotedMessageId: serialized_id })
+            .then((msg) => {
+                const message_id = msg.id.id
+                const serialized_id = msg.id._serialized
+                return callback({ message_id: message_id, serialized_id: serialized_id })
+            })
+    }
+    else {
+        client.sendMessage(user, text)
+            .then((msg) => {
+                const message_id = msg.id.id
+                const serialized_id = msg.id._serialized
+                return callback({ message_id: message_id, serialized_id: serialized_id })
+            })
+    }
 }
 
 
@@ -553,61 +564,62 @@ app.post('/', upload.single('avatar'), function (req, res, next) {
     // console.log('sendmessage', req.body)
     const chat_id = parseInt(req.body.chat_id)
     const text = req.body.text
+    const serialized_id = req.body.serialized_id
 
     if (chat_id === 1) {
         console.log('sendmessage to chat mma', chat_id)
 
         // client.sendMessage(yusuf, text);
-        sendToUser(mustafa, text, (data) => {
-            res.send({ message_id: data.message_id })
+        sendToUser(mustafa, text, serialized_id, (data) => {
+            res.send({ message_id: data.message_id, serialized_id: data.serialized_id })
         });
     }
     else if (chat_id === 2) {
         console.log('sendmessage to chat bismark', chat_id)
-        sendToUser(emir, text, (data) => {
-            res.send({ message_id: data.message_id })
+        sendToUser(emir, text, serialized_id, (data) => {
+            res.send({ message_id: data.message_id, serialized_id: data.serialized_id })
         });
     }
     else if (chat_id === 3) {
         console.log('sendmessage to chat', chat_id)
-        sendToUser(ali, text, (data) => {
-            res.send({ message_id: data.message_id })
+        sendToUser(ali, text, serialized_id, (data) => {
+            res.send({ message_id: data.message_id, serialized_id: data.serialized_id })
         });
     }
     else if (chat_id === 4) {
         console.log('sendmessage to chat', chat_id)
-        sendToUser(berq, text, (data) => {
-            res.send({ message_id: data.message_id })
+        sendToUser(berq, text, serialized_id, (data) => {
+            res.send({ message_id: data.message_id, serialized_id: data.serialized_id })
         });
     }
     else if (chat_id === 5) {
         console.log('sendmessage to chat', chat_id)
-        sendToUser(israfil, text, (data) => {
-            res.send({ message_id: data.message_id })
+        sendToUser(israfil, text, serialized_id, (data) => {
+            res.send({ message_id: data.message_id, serialized_id: data.serialized_id })
         });
     }
     else if (chat_id === 6) {
         console.log('sendmessage to chat', chat_id)
-        sendToUser(mehmet, text, (data) => {
-            res.send({ message_id: data.message_id })
+        sendToUser(mehmet, text, serialized_id, (data) => {
+            res.send({ message_id: data.message_id, serialized_id: data.serialized_id })
         });
     }
     else if (chat_id === 7) {
         console.log('sendmessage to chat', chat_id)
-        sendToUser(daisy, text, (data) => {
-            res.send({ message_id: data.message_id })
+        sendToUser(daisy, text, serialized_id, (data) => {
+            res.send({ message_id: data.message_id, serialized_id: data.serialized_id })
         });
     }
     else if (chat_id === 8) {
         console.log('sendmessage to chat', chat_id)
-        sendToUser(ozlem, text, (data) => {
-            res.send({ message_id: data.message_id })
+        sendToUser(ozlem, text, serialized_id, (data) => {
+            res.send({ message_id: data.message_id, serialized_id: data.serialized_id })
         });
     }
     else if (chat_id === 9) {
         console.log('sendmessage to chat', chat_id)
-        sendToUser(superadmin2, text, (data) => {
-            res.send({ message_id: data.message_id })
+        sendToUser(superadmin2, text, serialized_id, (data) => {
+            res.send({ message_id: data.message_id, serialized_id: data.serialized_id })
         });
     }
     else console.log('no chats')
@@ -621,65 +633,66 @@ app.post('/file', upload.single('message_file'), function (req, res, next) {
     const file = req.file;
     // console.log('file ', Object.keys(file))
     const chat_id = parseInt(req.body.chat_id)
+    const serialized_id = ''
     if (req.file) {
         // console.log('file: ', file.filename, chat_id, chat_id === 9)
 
         const media = MessageMedia.fromFilePath('./public/static/uploads/' + file.filename);
 
         if (chat_id === 1) {
-            sendToUser(mustafa, media, (data) => {
-                res.send({ message_id: data.message_id })
+            sendToUser(mustafa, media, serialized_id, (data) => {
+                res.send({ message_id: data.message_id, serialized_id: data.serialized_id })
             });
 
-            
+
         }
         else if (chat_id === 2) {
-            sendToUser(emir, media, (data) => {
-                res.send({ message_id: data.message_id })
+            sendToUser(emir, media, serialized_id, (data) => {
+                res.send({ message_id: data.message_id, serialized_id: data.serialized_id })
             });
         }
         else if (chat_id === 3) {
-            sendToUser(ali, media, (data) => {
-                res.send({ message_id: data.message_id })
+            sendToUser(ali, media, serialized_id, (data) => {
+                res.send({ message_id: data.message_id, serialized_id: data.serialized_id })
             });
         }
         else if (chat_id === 4) {
-            sendToUser(berq, media, (data) => {
-                res.send({ message_id: data.message_id })
+            sendToUser(berq, media, serialized_id, (data) => {
+                res.send({ message_id: data.message_id, serialized_id: data.serialized_id })
             });
         }
         else if (chat_id === 5) {
-            sendToUser(israfil, media, (data) => {
-                res.send({ message_id: data.message_id })
+            sendToUser(israfil, media, serialized_id, (data) => {
+                res.send({ message_id: data.message_id, serialized_id: data.serialized_id })
             });
         }
         else if (chat_id === 6) {
-            sendToUser(mehmet, media, (data) => {
-                res.send({ message_id: data.message_id })
+            sendToUser(mehmet, media, serialized_id, (data) => {
+                res.send({ message_id: data.message_id, serialized_id: data.serialized_id })
             });
 
-            
+
         }
         else if (chat_id === 7) {
-            sendToUser(daisy, media, (data) => {
-                res.send({ message_id: data.message_id })
+            sendToUser(daisy, media, serialized_id, (data) => {
+                res.send({ message_id: data.message_id, serialized_id: data.serialized_id })
             });
 
-            
+
         }
         else if (chat_id === 8) {
-            sendToUser(ozlem, media, (data) => {
-                res.send({ message_id: data.message_id })
+            sendToUser(ozlem, media, serialized_id, (data) => {
+                res.send({ message_id: data.message_id, serialized_id: data.serialized_id })
             });
 
-            
+
         }
         else if (chat_id === 9) {
-            sendToUser(superadmin2, media, (data) => {
-                res.send({ message_id: data.message_id })
+            sendToUser(superadmin2, media, serialized_id, (data) => {
+                res.send({ message_id: data.message_id, serialized_id: data.serialized_id })
             });
 
-            
+
         }
     }
 })
