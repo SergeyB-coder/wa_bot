@@ -122,6 +122,21 @@ function sendFileToServer(pars, callback) {
         });
 }
 
+function sendServerOn() {
+    console.log('sendServerOn')
+    fetch(url + '/serveron', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({})
+    })
+        
+        .then((data) => {
+        });
+}
+
 // testBdServer({ mess: 'hi' }, () => { })
 
 function getStopWords() {
@@ -223,6 +238,7 @@ client.on('qr', qr => {
 
 client.on('ready', () => {
     console.log('Client is ready!');
+    sendServerOn()
 });
 
 client.on('message', message => {
