@@ -3,7 +3,6 @@ const qrcode = require('qrcode-terminal');
 
 const { Client, LocalAuth, MessageMedia } = require('whatsapp-web.js');
 
-
 const path = require('path');
 
 const { APP_PORT, APP_IP, APP_PATH } = process.env;
@@ -76,6 +75,28 @@ const daisy = '8617365374867@c.us'
 
 //  Bosch Denso Iveco Scania Daf Reno
 const ozlem = '905301697987@c.us'
+
+// AGRITECH (Perkins/JD/NEWHOLAND/FERGUSSON)
+const maisa = '905066499065@c.us'
+
+// Аналоги Komatsu/CAT/Hitach (Китай)
+const lidia = '8618053788901@c.us'
+
+const chat_user = {
+    1: mustafa,
+    2: emir,
+    3: ali,
+    4: berq,
+    5: israfil,
+    6: mehmet,
+    7: daisy,
+    8: ozlem,
+    9: superadmin2,
+    10: maisa,
+    11: lidia
+}
+
+const user_chat = ['', mustafa, emir, ali, berq, israfil, mehmet, daisy, ozlem, superadmin2, maisa, lidia]
 
 const url = 'https://testapi.na4u.ru'
 
@@ -169,17 +190,7 @@ function addNewStopWord(new_word) {
     })
 }
 
-const users = {
-    1: 'Emir',
-    3: 'Yusuf',
-    4: 'Mustafa',
-    5: 'Ali',
-    6: 'BERQ',
-    7: 'Israfil',
-    8: 'Mehmet',
-    9: 'Daisy',
-    10: 'Ozlem'
-}
+const users = ['', emir, '', yusuf, mustafa, ali, berq, israfil, mehmet, daisy, ozlem, superadmin2, '', maisa, lidia ]
 
 const chats = ['Mma', 'Deutz Bismarck', 'Zetech Jhon Deer', 'BERQ Perkins Liebherr', 'CAT Original / OEM', 'Liebherr Original / TM', 'Jhon Deer Original China', 'Bosch Denso Iveco Scania Daf Reno']
 
@@ -257,48 +268,20 @@ client.on('message', message => {
 
 
     if (is_message) {
-        const text = message.body
-        if (message.from === yusuf) {
-            checkMedia(message, 3, 1)
+        if (users.indexOf(message.from) !== -1 && user_chat.indexOf(message.from) !== -1) {
+            checkMedia(message, users.indexOf(message.from), user_chat.indexOf(message.from))
 
             let stop_word = checkWordIsStop(message.body)
             if (stop_word) {
-                client.sendMessage(admin, 'ATTENTION!!! stop word from Igor in message: ' + message.body + '\nCHAT - Deutz Vosda MMA: ' + stop_word);
-                // client.sendMessage(superadmin, 'ATTENTION'+igor);
+                client.sendMessage(admin, `ATTENTION!!! stop word from ${message.from} in message: ${message.body}\nCHAT - ${user_chat.indexOf(message.from)}: ${stop_word}`);
             }
             else {
                 let quoted_id = ''
                 if (message.hasQuotedMsg) quoted_id = message._data.quotedStanzaID
                 sendMessageToServer({
                     text: message.body,
-                    user_id: 3,
-                    chat_id: 1,
-                    serialized_id: message.id._serialized,
-                    message_id: message.id.id,
-                    quoted_id: quoted_id
-                }, (data) => {
-
-                })
-
-
-            }
-        }
-
-        else if (message.from === mustafa) {
-            checkMedia(message, 4, 1)
-
-            let stop_word = checkWordIsStop(message.body)
-            if (stop_word) {
-                client.sendMessage(admin, 'ATTENTION!!! stop word from Igor in message: ' + message.body + '\nCHAT - Deutz Vosda MMA: ' + stop_word);
-
-            }
-            else {
-                let quoted_id = ''
-                if (message.hasQuotedMsg) quoted_id = message._data.quotedStanzaID
-                sendMessageToServer({
-                    text: message.body,
-                    user_id: 4,
-                    chat_id: 1,
+                    user_id: users.indexOf(message.from),
+                    chat_id: user_chat.indexOf(message.from),
                     serialized_id: message.id._serialized,
                     message_id: message.id.id,
                     quoted_id: quoted_id
@@ -307,248 +290,7 @@ client.on('message', message => {
                 })
             }
         }
-
-        else if (message.from === emir) {
-            checkMedia(message, 1, 2)
-            console.log('message.from', emir)
-
-            let stop_word = checkWordIsStop(message.body)
-            if (stop_word) {
-                client.sendMessage(admin, 'ATTENTION!!! stop word from Igor in message: ' + message.body + '\nCHAT - Deutz Vosda MMA: ' + stop_word);
-                // client.sendMessage(superadmin, 'ATTENTION'+emir);
-                console.log('stopword')
-            }
-            else {
-                let quoted_id = ''
-                if (message.hasQuotedMsg) quoted_id = message._data.quotedStanzaID
-                sendMessageToServer({
-                    text: message.body,
-                    user_id: 1,
-                    chat_id: 2,
-                    serialized_id: message.id._serialized,
-                    message_id: message.id.id,
-                    quoted_id: quoted_id
-                }, (data) => {
-
-                })
-            }
-        }
-
-        else if (message.from === ali) {
-            checkMedia(message, 5, 3)
-            console.log('message.from', ali)
-
-            let stop_word = checkWordIsStop(message.body)
-            if (stop_word) {
-                client.sendMessage(admin, 'ATTENTION!!! stop word from Ali in message: ' + message.body + '\nCHAT - Zetech Jhon Deer: ' + stop_word);
-                // client.sendMessage(superadmin, 'ATTENTION'+emir);
-                console.log('stopword')
-            }
-            else {
-                let quoted_id = ''
-                if (message.hasQuotedMsg) quoted_id = message._data.quotedStanzaID
-                sendMessageToServer({
-                    text: message.body,
-                    user_id: 5,
-                    chat_id: 3,
-                    serialized_id: message.id._serialized,
-                    message_id: message.id.id,
-                    quoted_id: quoted_id
-                }, (data) => {
-
-                })
-            }
-        }
-
-        else if (message.from === berq) {
-            checkMedia(message, 6, 4)
-            console.log('message.from', berq)
-
-            let stop_word = checkWordIsStop(message.body)
-            if (stop_word) {
-                client.sendMessage(admin, 'ATTENTION!!! stop word from Berq in message: ' + message.body + '\nCHAT -  BERQ Perkins Liebherr: ' + stop_word);
-                // client.sendMessage(superadmin, 'ATTENTION'+emir);
-                console.log('stopword')
-            }
-            else {
-                let quoted_id = ''
-                if (message.hasQuotedMsg) quoted_id = message._data.quotedStanzaID
-                sendMessageToServer({
-                    text: message.body,
-                    user_id: 6,
-                    chat_id: 4,
-                    serialized_id: message.id._serialized,
-                    message_id: message.id.id,
-                    quoted_id: quoted_id
-                }, (data) => {
-
-                })
-            }
-        }
-
-        else if (message.from === israfil) {
-            checkMedia(message, 7, 5)
-            console.log('message.from', israfil)
-
-            let stop_word = checkWordIsStop(message.body)
-            if (stop_word) {
-                client.sendMessage(admin, 'ATTENTION!!! stop word from Israfil in message: ' + message.body + '\nCHAT -  CAT Original / OEM: ' + stop_word);
-                // client.sendMessage(superadmin, 'ATTENTION'+emir);
-                console.log('stopword')
-            }
-            else {
-                let quoted_id = ''
-                if (message.hasQuotedMsg) quoted_id = message._data.quotedStanzaID
-                sendMessageToServer({
-                    text: message.body,
-                    user_id: 7,
-                    chat_id: 5,
-                    serialized_id: message.id._serialized,
-                    message_id: message.id.id,
-                    quoted_id: quoted_id
-                }, (data) => {
-
-                })
-            }
-        }
-
-        else if (message.from === mehmet) {
-            checkMedia(message, 8, 6)
-            console.log('message.from', mehmet)
-
-            let stop_word = checkWordIsStop(message.body)
-            if (stop_word) {
-                client.sendMessage(admin, 'ATTENTION!!! stop word from mehmet in message: ' + message.body + '\nCHAT -  Liebherr Original / TM: ' + stop_word);
-                // client.sendMessage(superadmin, 'ATTENTION'+emir);
-                console.log('stopword')
-            }
-            else {
-                let quoted_id = ''
-                if (message.hasQuotedMsg) quoted_id = message._data.quotedStanzaID
-                sendMessageToServer({
-                    text: message.body,
-                    user_id: 8,
-                    chat_id: 6,
-                    serialized_id: message.id._serialized,
-                    message_id: message.id.id,
-                    quoted_id: quoted_id
-                }, (data) => {
-
-                })
-            }
-        }
-
-        else if (message.from === daisy) {
-            checkMedia(message, 9, 7)
-            console.log('message.from', daisy)
-
-            let stop_word = checkWordIsStop(message.body)
-            if (stop_word) {
-                client.sendMessage(admin, 'ATTENTION!!! stop word from daisy in message: ' + message.body + '\nCHAT -  Jhon Deer Original China: ' + stop_word);
-                // client.sendMessage(superadmin, 'ATTENTION'+emir);
-                console.log('stopword')
-            }
-            else {
-                let quoted_id = ''
-                if (message.hasQuotedMsg) quoted_id = message._data.quotedStanzaID
-                sendMessageToServer({
-                    text: message.body,
-                    user_id: 9,
-                    chat_id: 7,
-                    serialized_id: message.id._serialized,
-                    message_id: message.id.id,
-                    quoted_id: quoted_id
-                }, (data) => {
-
-                })
-            }
-        }
-
-        else if (message.from === ozlem) {
-            checkMedia(message, 10, 8)
-            console.log('message.from', ozlem)
-
-            let stop_word = checkWordIsStop(message.body)
-            if (stop_word) {
-                client.sendMessage(admin, 'ATTENTION!!! stop word from ozlem in message: ' + message.body + '\nCHAT -  Bosch Denso Iveco Scania Daf Reno: ' + stop_word);
-                // client.sendMessage(superadmin, 'ATTENTION'+emir);
-                console.log('stopword')
-            }
-            else {
-                let quoted_id = ''
-                if (message.hasQuotedMsg) quoted_id = message._data.quotedStanzaID
-                sendMessageToServer({
-                    text: message.body,
-                    user_id: 10,
-                    chat_id: 8,
-                    serialized_id: message.id._serialized,
-                    message_id: message.id.id,
-                    quoted_id: quoted_id
-                }, (data) => {
-
-                })
-            }
-        }
-
-        else if (message.from === superadmin2) {
-            checkMedia(message, 11, 9)
-            console.log('message.from', superadmin2)
-            console.log('message.from', message.id._serialized)
-
-            let stop_word = checkWordIsStop(message.body)
-            if (stop_word) {
-                client.sendMessage(admin, 'ATTENTION!!! stop word from ozlem in message: ' + message.body + '\nCHAT -  Bosch Denso Iveco Scania Daf Reno: ' + stop_word);
-                // client.sendMessage(superadmin, 'ATTENTION'+emir);
-                console.log('stopword')
-            }
-            else {
-                let quoted_id = ''
-                if (message.hasQuotedMsg) quoted_id = message._data.quotedStanzaID
-                sendMessageToServer({
-                    text: message.body,
-                    user_id: 11,
-                    chat_id: 9,
-                    serialized_id: message.id._serialized,
-                    message_id: message.id.id,
-                    quoted_id: quoted_id
-                }, (data) => {
-
-                })
-
-                console.log('sendMessage to admin ', ozlem)
-
-                // client.sendMessage(superadmin, '*Bosch Denso Iveco Scania Daf Reno (Ozlem):* ' + text);
-                // client.sendMessage(superadmin2, '*Bosch Denso Iveco Scania Daf Reno (Ozlem):* ' + text);
-            }
-        }
-
-        // else if (message.from === superadmin2) {
-        //     checkMedia(message, 1, 2)
-        //     console.log('message.from ', superadmin2)
-
-        //     let stop_word = checkWordIsStop(message.body)
-        //     if (stop_word) {
-        //         client.sendMessage(admin, 'ATTENTION!!! stop word from Igor in message: ' + message.body + '\nCHAT - Deutz Vosda MMA: ' + stop_word);
-        //         // client.sendMessage(superadmin, 'ATTENTION'+emir);
-        //         console.log('stopword')
-        //     }
-        //     else {
-
-        //         sendMessageToServer({
-        //             text: message.body,
-        //             user_id: 1,
-        //             chat_id: 2
-        //         }, (data) => {
-
-        //         })
-
-        //         // client.sendMessage(superadmin, '*Deutz Bismarck (Sergey):* ' + text);
-        //     }
-        // }
-
     }
-
-
 });
 
 client.initialize();
@@ -581,59 +323,9 @@ app.post('/', upload.single('avatar'), function (req, res, next) {
     const text = req.body.text
     const serialized_id = req.body.serialized_id
 
-    if (chat_id === 1) {
-        console.log('sendmessage to chat mma', chat_id)
-
-        // client.sendMessage(yusuf, text);
-        sendToUser(mustafa, text, serialized_id, (data) => {
-            res.send({ message_id: data.message_id, serialized_id: data.serialized_id })
-        });
-    }
-    else if (chat_id === 2) {
-        console.log('sendmessage to chat bismark', chat_id)
-        sendToUser(emir, text, serialized_id, (data) => {
-            res.send({ message_id: data.message_id, serialized_id: data.serialized_id })
-        });
-    }
-    else if (chat_id === 3) {
-        console.log('sendmessage to chat', chat_id)
-        sendToUser(ali, text, serialized_id, (data) => {
-            res.send({ message_id: data.message_id, serialized_id: data.serialized_id })
-        });
-    }
-    else if (chat_id === 4) {
-        console.log('sendmessage to chat', chat_id)
-        sendToUser(berq, text, serialized_id, (data) => {
-            res.send({ message_id: data.message_id, serialized_id: data.serialized_id })
-        });
-    }
-    else if (chat_id === 5) {
-        console.log('sendmessage to chat', chat_id)
-        sendToUser(israfil, text, serialized_id, (data) => {
-            res.send({ message_id: data.message_id, serialized_id: data.serialized_id })
-        });
-    }
-    else if (chat_id === 6) {
-        console.log('sendmessage to chat', chat_id)
-        sendToUser(mehmet, text, serialized_id, (data) => {
-            res.send({ message_id: data.message_id, serialized_id: data.serialized_id })
-        });
-    }
-    else if (chat_id === 7) {
-        console.log('sendmessage to chat', chat_id)
-        sendToUser(daisy, text, serialized_id, (data) => {
-            res.send({ message_id: data.message_id, serialized_id: data.serialized_id })
-        });
-    }
-    else if (chat_id === 8) {
-        console.log('sendmessage to chat', chat_id)
-        sendToUser(ozlem, text, serialized_id, (data) => {
-            res.send({ message_id: data.message_id, serialized_id: data.serialized_id })
-        });
-    }
-    else if (chat_id === 9) {
-        console.log('sendmessage to chat', chat_id)
-        sendToUser(superadmin2, text, serialized_id, (data) => {
+    if (chat_user[chat_id]) {
+        console.log('sendmessage to chat ', chat_id)
+        sendToUser(chat_user[chat_id], text, serialized_id, (data) => {
             res.send({ message_id: data.message_id, serialized_id: data.serialized_id })
         });
     }
@@ -644,71 +336,18 @@ app.post('/', upload.single('avatar'), function (req, res, next) {
 
 
 app.post('/file', upload.single('message_file'), function (req, res, next) {
-    // console.log('req', Object.keys(req))
     const file = req.file;
-    // console.log('file ', Object.keys(file))
     const chat_id = parseInt(req.body.chat_id)
     const serialized_id = ''
-    if (req.file) {
-        // console.log('file: ', file.filename, chat_id, chat_id === 9)
 
+    if (req.file) {
         const media = MessageMedia.fromFilePath('./public/static/uploads/' + file.filename);
 
-        if (chat_id === 1) {
-            sendToUser(mustafa, media, serialized_id, (data) => {
+        if (chat_user[chat_id]) {
+            sendToUser(chat_user[chat_id], media, serialized_id, (data) => {
                 res.send({ message_id: data.message_id, serialized_id: data.serialized_id })
             });
-
-
-        }
-        else if (chat_id === 2) {
-            sendToUser(emir, media, serialized_id, (data) => {
-                res.send({ message_id: data.message_id, serialized_id: data.serialized_id })
-            });
-        }
-        else if (chat_id === 3) {
-            sendToUser(ali, media, serialized_id, (data) => {
-                res.send({ message_id: data.message_id, serialized_id: data.serialized_id })
-            });
-        }
-        else if (chat_id === 4) {
-            sendToUser(berq, media, serialized_id, (data) => {
-                res.send({ message_id: data.message_id, serialized_id: data.serialized_id })
-            });
-        }
-        else if (chat_id === 5) {
-            sendToUser(israfil, media, serialized_id, (data) => {
-                res.send({ message_id: data.message_id, serialized_id: data.serialized_id })
-            });
-        }
-        else if (chat_id === 6) {
-            sendToUser(mehmet, media, serialized_id, (data) => {
-                res.send({ message_id: data.message_id, serialized_id: data.serialized_id })
-            });
-
-
-        }
-        else if (chat_id === 7) {
-            sendToUser(daisy, media, serialized_id, (data) => {
-                res.send({ message_id: data.message_id, serialized_id: data.serialized_id })
-            });
-
-
-        }
-        else if (chat_id === 8) {
-            sendToUser(ozlem, media, serialized_id, (data) => {
-                res.send({ message_id: data.message_id, serialized_id: data.serialized_id })
-            });
-
-
-        }
-        else if (chat_id === 9) {
-            sendToUser(superadmin2, media, serialized_id, (data) => {
-                res.send({ message_id: data.message_id, serialized_id: data.serialized_id })
-            });
-
-
         }
     }
 })
-// v14
+// v15
