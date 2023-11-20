@@ -18,13 +18,13 @@ const storage = multer.diskStorage({
         // let extArray = file.mimetype.split("/");
         // let extension = extArray[extArray.length - 1];
 
-        // let ss = Buffer.from(file.originalname, 'latin1').toString('utf8')
+        let ss = Buffer.from(file.originalname, 'latin1').toString('utf8')
         // const ind = ss.lastIndexOf('.')
         // cb(null, ss.slice(0, ind) + '_' + Date.now() + ss.slice(ind));
 
-        console.log('file', file)
+        console.log('file', file, ss)
         // cb(null, file.fieldname + '-' + Date.now() + '.' + extension);
-        cb(null, file.originalname);
+        cb(null, ss);
     }
 });
 const upload = multer({ storage: storage });
