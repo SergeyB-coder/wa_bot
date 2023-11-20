@@ -14,16 +14,17 @@ const storage = multer.diskStorage({
         cb(null, './public/static/uploads');
     },
     filename: function (req, file, cb) {
-        console.log('file.mimetype', file.mimetype)
-        let extArray = file.mimetype.split("/");
-        let extension = extArray[extArray.length - 1];
+        // console.log('file.mimetype', file.mimetype)
+        // let extArray = file.mimetype.split("/");
+        // let extension = extArray[extArray.length - 1];
 
-        let ss = Buffer.from(file.originalname, 'latin1').toString('utf8')
-        const ind = ss.lastIndexOf('.')
+        // let ss = Buffer.from(file.originalname, 'latin1').toString('utf8')
+        // const ind = ss.lastIndexOf('.')
         // cb(null, ss.slice(0, ind) + '_' + Date.now() + ss.slice(ind));
 
         console.log('file', file)
-        cb(null, file.fieldname + '-' + Date.now() + '.' + extension);
+        // cb(null, file.fieldname + '-' + Date.now() + '.' + extension);
+        cb(null, file.originalname);
     }
 });
 const upload = multer({ storage: storage });
