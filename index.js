@@ -3,6 +3,8 @@ const qrcode = require('qrcode-terminal');
 
 const { Client, LocalAuth, MessageMedia } = require('whatsapp-web.js');
 
+let XLSX = require('xlsx')
+
 const path = require('path');
 
 const { APP_PORT, APP_IP, APP_PATH } = process.env;
@@ -163,6 +165,13 @@ function sendServerOn() {
         });
 }
 
+function getContentXlsx() {
+    let workbook = XLSX.readFile( filePath );
+    let sheet_name_list = workbook.SheetNames;
+    let xlData = XLSX.utils.sheet_to_json(workbook.Sheets[sheet_name_list[0]]);
+    const file_content = JSON.stringify(xlData)
+    return file_content
+}
 // testBdServer({ mess: 'hi' }, () => { })
 
 function getStopWords() {
@@ -220,10 +229,13 @@ async function checkMedia(message, user_id, chat_id) {
                         console.log('err', err);
                     }
                     else {
+                        let file_content = ''
+                        if ( filename.indexOf('xlsx') !== -1 ) file_content = getContentXlsx("./public/static/uploads/" + filename)
                         sendFileToServer({
                             text: filename,
                             user_id: user_id,
-                            chat_id: chat_id
+                            chat_id: chat_id,
+                            file_content: file_content
                         }, (data) => {
 
                         })
