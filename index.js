@@ -105,7 +105,8 @@ const chat_user = {
 
 const user_chat = ['', mustafa, emir, ali, berq, israfil, mehmet, daisy, ozlem, superadmin2, maisa, lidia]
 
-const url = 'https://testapi.na4u.ru'
+// const url = 'https://testapi.na4u.ru'
+const url = 'https://techstimul.na4u.ru'
 
 const extentions = {
     'image/jpeg': 'jpg',
