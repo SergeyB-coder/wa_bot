@@ -84,10 +84,13 @@ const daisy = '8617365374867@c.us'
 const ozlem = '905301697987@c.us'
 
 // AGRITECH (Perkins/JD/NEWHOLAND/FERGUSSON)
-const maisa = '905066499065@c.us'
+const maisa = '905531440187@c.us'
 
 // Аналоги Komatsu/CAT/Hitach (Китай)
 const lidia = '8618053788901@c.us'
+
+// ZEN аналоги (CAT/KOMATSU) Турция
+const hamza = '905342367393@c.us'
 
 const chat_user = {
     1: mustafa,
@@ -100,10 +103,11 @@ const chat_user = {
     8: ozlem,
     9: superadmin2,
     10: maisa,
-    11: lidia
+    11: lidia,
+    12: hamza
 }
 
-const user_chat = ['', mustafa, emir, ali, berq, israfil, mehmet, daisy, ozlem, superadmin2, maisa, lidia]
+const user_chat = ['', mustafa, emir, ali, berq, israfil, mehmet, daisy, ozlem, superadmin2, maisa, lidia, hamza]
 
 // const url = 'https://testapi.na4u.ru'
 const url = 'https://techstimul.na4u.ru'
@@ -205,7 +209,7 @@ function addNewStopWord(new_word) {
     })
 }
 
-const users = ['', emir, '', yusuf, mustafa, ali, berq, israfil, mehmet, daisy, ozlem, superadmin2, '', maisa, lidia ]
+const users = ['', emir, '', yusuf, mustafa, ali, berq, israfil, mehmet, daisy, ozlem, superadmin2, '', maisa, lidia, hamza ]
 
 const chats = ['Mma', 'Deutz Bismarck', 'Zetech Jhon Deer', 'BERQ Perkins Liebherr', 'CAT Original / OEM', 'Liebherr Original / TM', 'Jhon Deer Original China', 'Bosch Denso Iveco Scania Daf Reno']
 
@@ -368,4 +372,4 @@ app.post('/file', upload.single('message_file'), function (req, res, next) {
         }
     }
 })
-// v15
+// v16
