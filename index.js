@@ -275,43 +275,48 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
+    try {
     // console.log('message', message)
 
-    let is_message = true
-    if (message.from === admin) {
-        if (message.body.length > 3) {
-            if (message.body.slice(0, 3) === '*7#') {
-                is_message = false
-                const new_word = message.body.slice(3)
-                addNewStopWord(new_word)
+        let is_message = true
+        if (message.from === admin) {
+            if (message.body.length > 3) {
+                if (message.body.slice(0, 3) === '*7#') {
+                    is_message = false
+                    const new_word = message.body.slice(3)
+                    addNewStopWord(new_word)
+                }
+            }
+        }
+
+
+        if (is_message) {
+            if (users.indexOf(message.from) !== -1 && user_chat.indexOf(message.from) !== -1) {
+                checkMedia(message, users.indexOf(message.from), user_chat.indexOf(message.from))
+
+                let stop_word = checkWordIsStop(message.body)
+                if (stop_word) {
+                    client.sendMessage(admin, `ATTENTION!!! stop word from ${message.from} in message: ${message.body}\nCHAT - ${user_chat.indexOf(message.from)}: ${stop_word}`);
+                }
+                else {
+                    let quoted_id = ''
+                    if (message.hasQuotedMsg) quoted_id = message._data.quotedStanzaID
+                    sendMessageToServer({
+                        text: message.body,
+                        user_id: users.indexOf(message.from),
+                        chat_id: user_chat.indexOf(message.from),
+                        serialized_id: message.id._serialized,
+                        message_id: message.id.id,
+                        quoted_id: quoted_id
+                    }, (data) => {
+
+                    })
+                }
             }
         }
     }
-
-
-    if (is_message) {
-        if (users.indexOf(message.from) !== -1 && user_chat.indexOf(message.from) !== -1) {
-            checkMedia(message, users.indexOf(message.from), user_chat.indexOf(message.from))
-
-            let stop_word = checkWordIsStop(message.body)
-            if (stop_word) {
-                client.sendMessage(admin, `ATTENTION!!! stop word from ${message.from} in message: ${message.body}\nCHAT - ${user_chat.indexOf(message.from)}: ${stop_word}`);
-            }
-            else {
-                let quoted_id = ''
-                if (message.hasQuotedMsg) quoted_id = message._data.quotedStanzaID
-                sendMessageToServer({
-                    text: message.body,
-                    user_id: users.indexOf(message.from),
-                    chat_id: user_chat.indexOf(message.from),
-                    serialized_id: message.id._serialized,
-                    message_id: message.id.id,
-                    quoted_id: quoted_id
-                }, (data) => {
-
-                })
-            }
-        }
+    catch {
+        console.log(9)
     }
 });
 
