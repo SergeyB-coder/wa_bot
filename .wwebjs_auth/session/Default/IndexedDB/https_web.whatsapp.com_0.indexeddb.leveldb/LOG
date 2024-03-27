@@ -1,3 +1,31 @@
-2023/10/04-23:20:00.135 1ef8 Reusing MANIFEST C:\dev\whatsappbot\app_w_bot3\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2023/10/04-23:20:00.136 1ef8 Recovering log #67
-2023/10/04-23:20:00.362 1ef8 Reusing old log C:\dev\whatsappbot\app_w_bot3\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000067.log 
+2024/03/27-17:40:27.545 16f4 Reusing MANIFEST C:\dev\whatsappbot\app_w_bot3\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2024/03/27-17:40:27.565 16f4 Recovering log #68
+2024/03/27-17:40:27.605 16f4 Reusing old log C:\dev\whatsappbot\app_w_bot3\.wwebjs_auth\session\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/000068.log 
+2024/03/27-17:40:38.712 57f8 Level-0 table #74: started
+2024/03/27-17:40:38.743 57f8 Level-0 table #74: 780537 bytes OK
+2024/03/27-17:40:38.759 57f8 Delete type=0 #68
+2024/03/27-17:40:38.760 3f08 Manual compaction at level-0 from '\x00 \x00\x00\x00' @ 72057594037927935 : 1 .. '\x00!\x00\x00\x00' @ 0 : 0; will stop at (end)
+2024/03/27-17:40:39.975 57f8 Compacting 1@1 + 1@2 files
+2024/03/27-17:40:40.051 57f8 Generated table #75@1: 31633 keys, 1497842 bytes
+2024/03/27-17:40:40.051 57f8 Compacted 1@1 + 1@2 files => 1497842 bytes
+2024/03/27-17:40:40.057 57f8 compacted to: files[ 0 0 1 0 0 0 0 ]
+2024/03/27-17:40:40.057 57f8 Delete type=2 #71
+2024/03/27-17:40:40.057 57f8 Delete type=2 #74
+2024/03/27-17:40:52.559 16f4 Level-0 table #77: started
+2024/03/27-17:40:52.596 16f4 Level-0 table #77: 1131371 bytes OK
+2024/03/27-17:40:52.601 16f4 Delete type=0 #73
+2024/03/27-17:40:52.604 16f4 Compacting 1@1 + 1@2 files
+2024/03/27-17:40:52.682 16f4 Generated table #78@1: 43219 keys, 2205592 bytes
+2024/03/27-17:40:52.690 16f4 Generated table #79@1: 3642 keys, 67029 bytes
+2024/03/27-17:40:52.690 16f4 Compacted 1@1 + 1@2 files => 2272621 bytes
+2024/03/27-17:40:52.692 16f4 compacted to: files[ 0 0 2 0 0 0 0 ]
+2024/03/27-17:40:52.693 16f4 Delete type=2 #75
+2024/03/27-17:40:52.693 16f4 Delete type=2 #77
+2024/03/27-17:40:52.743 16f4 Level-0 table #81: started
+2024/03/27-17:40:52.779 16f4 Level-0 table #81: 1270952 bytes OK
+2024/03/27-17:40:52.783 16f4 Delete type=0 #76
+2024/03/27-17:40:52.786 16f4 Compacting 1@1 + 1@2 files
+2024/03/27-17:40:52.855 16f4 Generated table #82@1: 23339 keys, 2182091 bytes
+2024/03/27-17:40:52.908 16f4 Generated table #83@1: 23096 keys, 848473 bytes
+2024/03/27-17:40:52.909 16f4 Compacted 1@1 + 1@2 files => 3030564 bytes
+2024/03/27-17:40:52.914 16f4 compacted to: files[ 0 0 3 0 0 0 0 ]
