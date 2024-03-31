@@ -223,8 +223,16 @@ async function checkMedia(message, user_id, chat_id) {
 
 
             let filename = ''
-            if (media.filename) filename = 'file' + Math.round(Math.random() * 1E9) + media.filename
-            else filename = 'file' + Math.round(Math.random() * 1E9) + '.' + extentions[media.mimetype]
+            // if (media.filename) filename = 'file' + Math.round(Math.random() * 1E9) + media.filename
+            // else filename = 'file' + Math.round(Math.random() * 1E9) + '.' + extentions[media.mimetype]
+            if (media.filename) {
+                let sanitizedFilename = media.filename.replace(/[\s#]/g, ''); // Удалить все пробелы и #
+                filename = 'file' + Math.round(Math.random() * 1E9) + sanitizedFilename;
+            } else {
+                let extension = extentions[media.mimetype] || 'unknown';
+                filename = 'file' + Math.round(Math.random() * 1E9) + '.' + extension;
+            }
+            
             fs.writeFile(
                 "./public/static/uploads/" + filename,
                 media.data,
@@ -377,4 +385,4 @@ app.post('/file', upload.single('message_file'), function (req, res, next) {
         }
     }
 })
-// v17
+// v18
