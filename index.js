@@ -261,15 +261,21 @@ async function checkMedia(message, user_id, chat_id) {
 
 }
 
+const wwebVersion = '2.2407.3';
+
 const client = new Client(
     {
         authStrategy: new LocalAuth(),
         puppeteer: {
             headless: true,
             args: ['--no-sandbox', '--disable-setuid-sandbox'],
-            // executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe',
-            executablePath: '/usr/bin/google-chrome-stable'
-        }
+            executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe',
+            // executablePath: '/usr/bin/google-chrome-stable'
+        },
+        webVersionCache: {
+            type: 'remote',
+            remotePath: `https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/${wwebVersion}.html`,
+        },
     }
 );
 
