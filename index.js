@@ -261,7 +261,7 @@ async function checkMedia(message, user_id, chat_id) {
 
 }
 
-const wwebVersion = '2.2407.3';
+const wwebVersion = '2.2412.54';
 
 const client = new Client(
     {

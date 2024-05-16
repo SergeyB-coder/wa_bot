@@ -1,3 +1,2 @@
-2024/04/22-10:24:03.956 3274 Reusing MANIFEST C:\dev\whatsappbot\app_w_bot3\.wwebjs_auth\session\Default\Platform Notifications/MANIFEST-000001
-2024/04/22-10:24:03.961 3274 Recovering log #3
-2024/04/22-10:24:03.962 3274 Reusing old log C:\dev\whatsappbot\app_w_bot3\.wwebjs_auth\session\Default\Platform Notifications/000003.log 
+2024/05/16-21:50:28.561 2804 Creating DB C:\dev\whatsappbot\app_w_bot3\.wwebjs_auth\session\Default\Platform Notifications since it was missing.
+2024/05/16-21:50:28.579 2804 Reusing MANIFEST C:\dev\whatsappbot\app_w_bot3\.wwebjs_auth\session\Default\Platform Notifications/MANIFEST-000001
